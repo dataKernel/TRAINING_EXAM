@@ -24,13 +24,12 @@ void	reverse_string(char **str)
 
 	if (str == NULL)
 	{
-		printf("String is NULL.. prog will end now..\n");
+		printf("String is NULL.. function exit..\n");
 		return ;
 	}
 	i = 0;
     sizeStr = ft_strlen(*str);
-    printf("char:%c last:%c", (*str)[i], (*str)[sizeStr - 1]);
-    while ((*str)[i])
+    while (i < sizeStr - 1)
 	{
 		temp = (*str)[i];
 		(*str)[i] = (*str)[sizeStr - 1];
@@ -48,6 +47,6 @@ int	main(int argc, char **argv)
 		return (0);
 	}
     reverse_string(&argv[1]);
-    printf("%s", argv[1]);
+ 	printf("%s", argv[1]);
 	return (0);
 }
