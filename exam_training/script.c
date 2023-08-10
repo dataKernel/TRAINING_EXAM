@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdbool.h>
 #include <unistd.h>
 
 void	ft_putchar(char c)
@@ -7,55 +6,42 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-size_t		ft_strlen(char *str)
+int		ft_strlen(char *str)
 {
-	size_t	i;
-	
+	int		i;
+
 	i = 0;
 	while(str[i])
 		i++;
 	return(i);
 }
 
-size_t		get_index_space(char *str)
+char	check_doublons(char *str, int index)
 {
-	size_t		indexSpace;
-	size_t		i;
-
-	indexSpace = 0;
-	i = 0;
-	while(str[i])
+	int		j;
+	
+	while(str[index])
 	{
-		if(str[i] == ' ')
+		j = index + 1;
+		while(str[j])
 		{
-			indexSpace = i;
+			if(str[j] == str[index])
+				return(str[index]);
+			j++;
 		}
-		i++;
+		index++;
 	}
-	if(str[i - 1] == ' ')
-		indexSpace = 0;
-	return(indexSpace);
+	return(0);
 }
 
 int		main(int argc, char **argv)
 {
-	char		word[100];
-	size_t		spaceIndex;
-	size_t		i;
-
-	spaceIndex = get_index_space(argv[1]) + 1;
-	i = 0;
-	if(argc != 2 || !argv[i][0])
+	if(argc != 2)
 	{
-		ft_putchar('\n');
+		printf("wrong args nbr\n");
 		return(0);
 	}
-	while(argv[1][spaceIndex])
-	{
-		word[i] = argv[1][spaceIndex];
-		i++;
-		spaceIndex++;
-	}
-	printf("last: %s", word);
+	printf("char: %c\n", check_doublons(argv[1], 1));
+	printf("int: %i", check_doublons(argv[1], 1));
 	return(0);
 }
