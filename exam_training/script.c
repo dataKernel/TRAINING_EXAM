@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <unistd.h>
+#include <stdbool.h>
 
 void	ft_putchar(char c)
 {
@@ -18,30 +19,44 @@ int		ft_strlen(char *str)
 
 char	check_doublons(char *str, int index)
 {
-	int		j;
+	int		i;
 	
-	while(str[index])
+	i = 0;
+	while(str[i])
 	{
-		j = index + 1;
-		while(str[j])
-		{
-			if(str[j] == str[index])
-				return(str[index]);
-			j++;
-		}
-		index++;
+		if(str[index] == str[i])
+			return(str[index]);
+		i++;
 	}
 	return(0);
 }
 
+
 int		main(int argc, char **argv)
 {
+	char	doublonTab[50];
+	int		sizeDoublonContent;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
 	if(argc != 2)
 	{
 		printf("wrong args nbr\n");
 		return(0);
 	}
-	printf("char: %c\n", check_doublons(argv[1], 1));
-	printf("int: %i", check_doublons(argv[1], 1));
+	while(argv[i])
+	{
+		if(check_doublons(argv[i], i))
+		{
+			doublonTab[j] = argv[i];
+			j++;
+		}
+		i++;
+	}
+	doublonTab[j] = '\0';
 	return(0);
 }
+
+//azertzt rtzz
