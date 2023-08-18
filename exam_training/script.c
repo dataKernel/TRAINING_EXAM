@@ -15,7 +15,7 @@ void    ft_putstr(char *str)
     {
         ft_putchar(str[i]);
         i++;
-    }    
+    }
 }
 
 int     ft_strlen(char *str)
@@ -28,20 +28,18 @@ int     ft_strlen(char *str)
     return(i);
 }
 
-int     main(void)
+int     main(int argc, char **argv)
 {
-    char    *str = "lancelot";
     int     i;
+    int     j;
+    int     k;
 
-    i = ft_strlen(str);
-    while(i >= 0)
+    if(argc != 3)
     {
-        ft_putchar(str[i]);
-        i--;
+        ft_putchar('\n');
+        return(0);
     }
+
+    
     return(0);
 }
-
-
-
-
