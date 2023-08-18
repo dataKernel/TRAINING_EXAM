@@ -1,41 +1,47 @@
 #include <stdio.h>
-#include <stdlbool.h>
+#include <unistd.h>
 
-bool    check_is_nbr(int nbr)
+void    ft_putchar(char c)
 {
-    double  res;
-
-    res = (double) nbr;
-    if (res > 2147483647 || res < -2147483648)
-        return(true);
-    return(false);
+    write(1, &c, 1);
 }
 
-int     max(int *tab, unsigned int len)
+void    ft_putstr(char *str)
 {
-    int     res;
     int     i;
-    int     j;
 
     i = 0;
-    res = tab[i];
-    while(i < len)
+    while(str[i])
     {
-        j = 0;
-        while(j < len)
-        {
-            if(res < tab[j])
-                res = tab[j];
-            j++;
-        }
+        ft_putchar(str[i]);
         i++;
-    }
-    return(res);
+    }    
+}
+
+int     ft_strlen(char *str)
+{
+    int     i;
+
+    i = 0;
+    while(str[i])
+        i++;
+    return(i);
 }
 
 int     main(void)
 {
-    int     tab[4] = {0, 1, 2, 3};
-    printf("%i", max(tab, 4));
+    char    *str = "lancelot";
+    int     i;
+
+    i = ft_strlen(str);
+    while(i >= 0)
+    {
+        ft_putchar(str[i]);
+        i--;
+    }
     return(0);
 }
+
+
+
+
