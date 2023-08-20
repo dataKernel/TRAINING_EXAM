@@ -1,46 +1,127 @@
+#include <unistd.h>
+#include <stdlib.h>
 #include <stdio.h>
 
-void    ft_draw_square(int size)
+void    ft_putchar(char c)
 {
+    write(1, &c, 1);
+}
+
+int     ft_strlen(char *str)
+{
+    int     i;
+
+    i = 0;
+    while(str[i])
+        i++;
+    return(i);
+}
+
+int     check_words_nbr(char *str)
+{
+    int     res;
+    int     i;
+
+    res = 0;
+    i = 0;
+    while(str[i])
+    {
+        if(str[i] == ' ')
+            res++;
+        i++;
+    }
+    return(res + 1);
+}
+
+char    *create_word_on_heap(char *str, int index)
+{
+    char    *word;
+    int     sizeWord;
     int     i;
     int     j;
 
-    i = 0;
-    while(i < size)
+    sizeWord = 0;
+    i = index;
+    j = 0;
+    printf("index: %i\n", i);
+    while(str[i] != ' ' && str[i] != '\0')
     {
-        j = 0;
-        while(j < size)
-        {
-            printf("*");
-            j++;
-        }
-        printf("\n");
         i++;
+        sizeWord++;
     }
+    printf("sizeWord: %i\n", sizeWord);
+    word = (char *)malloc(sizeof(char) * (sizeWord + 1));
+    while(j < sizeWord)
+    {
+        word[j] = str[index];
+        index++;
+        j++;
+    }
+    word[j] = '\0';
+    return(word);
 }
 
-int     ft_atoi(char *str)
+char    **ft_split(char *str)
 {
-    int     result;
+    char    **sentence;
+    char    *word;
     int     i;
+    int     j;
 
-    result = 0;
-    i = 0;
-    while(str[i] < '0' || str[i] > '9')
-        i++;
-    while(str[i])
+    i = 1;
+    j = 0;
+    sentence = (char **)malloc(sizeof(char *) * (check_words_nbr(str) + 1));
+    sentence[check_words_nbr(str)] = NULL;
+    sentence[0] = create_word_on_heap(str, 0);
+    while(i < check_words_nbr(str))
     {
-        result = result * 10 + str[i] - '0';
+        while(str[j])
+        {
+            if(str[j] == ' ')
+            {
+                j++;
+                break;
+            }
+            j++;
+        }
+        sentence[i] = create_word_on_heap(str, j);
         i++;
     }
-    return(result);
+    return(sentence);
 }
 
 int     main(int argc, char **argv)
 {
-    int     argument;
-
-    argument = ft_atoi(argv[1]);
-    ft_draw_square(argument);
+    char    **split;
+    if(argc != 2)
+    {
+        ft_putchar('\n');
+        return(0);
+    }
+    split = ft_split(argv[1]);
+    for(int i = 0; i < check_words_nbr(argv[1]); i++)
+        printf("elem[%i]-->%s\n", i, split[i]);
     return(0);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
