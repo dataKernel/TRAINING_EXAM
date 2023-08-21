@@ -1,124 +1,59 @@
-#include <unistd.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 
+typedef struct s_point
+{
+    int     x;
+    int     y;
+}t_point;
 void    ft_putchar(char c)
 {
     write(1, &c, 1);
 }
-
-int     ft_strlen(char *str)
+void    ft_putstr(char *str)
 {
     int     i;
-
-    i = 0;
-    while(str[i])
-        i++;
-    return(i);
-}
-
-int     check_words_nbr(char *str)
-{
-    int     res;
-    int     i;
-
-    res = 0;
-    i = 0;
     while(str[i])
     {
-        if(str[i] == ' ')
-            res++;
+        ft_putchar(str[i]);
         i++;
     }
-    return(res + 1);
+}
+char    **make_area(char **zone, t_point size)
+{
+    char **new;
+
+    new = malloc(sizeof(char *) * size.y);
+    for (int i = 0; i < size.y; ++i)
+    {
+        new[i] = malloc(size.x + 1);
+        for (int j = 0; j < size.x; ++j)
+            new[i][j] = zone[i][j];
+        new[i][size.x] = '\0';
+    }
+
+    return new;
 }
 
-char    *create_word_on_heap(char *str, int index)
+void    flood_fill(char **tab, t_point size, t_point begin)
 {
-    char    *word;
-    int     sizeWord;
-    int     i;
-    int     j;
-
-    sizeWord = 0;
-    i = index;
-    j = 0;
-    printf("index: %i\n", i);
-    while(str[i] != ' ' && str[i] != '\0')
-    {
-        i++;
-        sizeWord++;
-    }
-    printf("sizeWord: %i\n", sizeWord);
-    word = (char *)malloc(sizeof(char) * (sizeWord + 1));
-    while(j < sizeWord)
-    {
-        word[j] = str[index];
-        index++;
-        j++;
-    }
-    word[j] = '\0';
-    return(word);
+    //...
 }
 
-char    **ft_split(char *str)
+int     main(void)
 {
-    char    **sentence;
-    char    *word;
-    int     i;
-    int     j;
-
-    i = 1;
-    j = 0;
-    sentence = (char **)malloc(sizeof(char *) * (check_words_nbr(str) + 1));
-    sentence[check_words_nbr(str)] = NULL;
-    sentence[0] = create_word_on_heap(str, 0);
-    while(i < check_words_nbr(str))
+    t_point     size = {4, 4};
+    char *zone[] = 
     {
-        while(str[j])
-        {
-            if(str[j] == ' ')
-            {
-                j++;
-                break;
-            }
-            j++;
-        }
-        sentence[i] = create_word_on_heap(str, j);
-        i++;
-    }
-    return(sentence);
-}
+        "11111111",
+        "10001001",
+        "10010001",
+        "10110001",
+        "11100001",
+    };
 
-int     main(int argc, char **argv)
-{
-    char    **split;
-    if(argc != 2)
-    {
-        ft_putchar('\n');
-        return(0);
-    }
-    split = ft_split(argv[1]);
-    for(int i = 0; i < check_words_nbr(argv[1]); i++)
-        printf("elem[%i]-->%s\n", i, split[i]);
     return(0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
