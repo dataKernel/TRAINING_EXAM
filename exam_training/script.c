@@ -47,18 +47,24 @@ char	*ft_itoa(int nbr)
 	int		i;
 	int		sizeNbr;
 	char	*string;
-
+	
 	string = NULL;
 	sizeNbr = check_size_nbr(nbr);
+	if(nbr < 0)
+		sizeNbr++;
 	i = sizeNbr - 1;
+	printf("sizeNbr__%i  i__%i\n", sizeNbr, i);
 	string = (char *)malloc(sizeof(char) * sizeNbr + 1);
-	while(nbr > 0)
+	string[i + 1] = '\0';
+	if(nbr < 0)
+		string[0] = '-';
+	while(nbr > 0 || nbr < 0)
 	{
+		printf("char:%c", string[i]);
 		string[i] = nbr % 10 + '0';
 		nbr /= 10;
 		i--;
 	}
-	string[i] = '\0';
 	return(string);
 }
 
@@ -66,7 +72,7 @@ int		main(void)
 {
 	char	*test;
 
-	test = ft_itoa(879898);
+	test = ft_itoa(-879898);
 	printf("value --> %s\n", test);
 	return(0);
 }
