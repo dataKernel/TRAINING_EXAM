@@ -6,7 +6,6 @@ void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
-
 void	ft_putstr(char *str)
 {
 	int		i;
@@ -18,7 +17,6 @@ void	ft_putstr(char *str)
 		i++;
 	}
 }
-
 int		ft_strlen(char *str)
 {
 	int		i;
@@ -34,6 +32,8 @@ int		check_size_nbr(int nbr)
 	int		res;
 
 	res = 0;
+	if(nbr < 0)
+		res ++;
 	while(nbr > 0 || nbr < 0)
 	{
 		nbr /= 10;
@@ -50,17 +50,16 @@ char	*ft_itoa(int nbr)
 	
 	string = NULL;
 	sizeNbr = check_size_nbr(nbr);
-	if(nbr < 0)
-		sizeNbr++;
 	i = sizeNbr - 1;
-	printf("sizeNbr__%i  i__%i\n", sizeNbr, i);
-	string = (char *)malloc(sizeof(char) * sizeNbr + 1);
+	string = (char *)malloc(sizeof(char) * (sizeNbr + 1));
 	string[i + 1] = '\0';
 	if(nbr < 0)
+	{
+		nbr *= -1;
 		string[0] = '-';
+	}
 	while(nbr > 0 || nbr < 0)
 	{
-		printf("char:%c", string[i]);
 		string[i] = nbr % 10 + '0';
 		nbr /= 10;
 		i--;
