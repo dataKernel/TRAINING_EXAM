@@ -19,8 +19,8 @@ int     main(void)
     c = &b;
     //test
     printf("valeur directe: %i\n", n);
-    printf("valeur sous ptr: %i\n", *a);
-    printf("valeur sous ptr (assignation): %i\n", *b);
-    printf("valeur sous ptr (assignation): %i\n", *c);
+    printf("valeur sous ptr: %p\n", a);
+    printf("valeur sous ptr (assignation): %p\n", b);
+    printf("valeur sous ptr (assignation): %p\n", c);
     return(0);
 }
