@@ -1,34 +1,23 @@
 #include <stdio.h>
-#include <unistd.h>
 
-
-void	ft_putchar(char c)
+void    ft_utlimate_ft(int *********n)
 {
-	write(1, &c, 1);
+    return ;
 }
 
-int		ft_atoi_base(const char *str, int strBase)
+int     main(void)
 {
-	const char	*baseFixed;
-	int			res;
-	int			i;
-
-	baseFixed = "0123456789abcdef";
-	res = 0;
-	i = 0;
-	while(i < strBase)
-	{
-		printf("%c__", baseFixed[i]);
-		i++;
-	}
-	return(res);
-}
-
-
-int		main(void)
-{
-	int		n;
-
-	n = ft_atoi_base("ff", 10);
-	return(0);
+    //declaration
+    int     n;
+    int     *a;
+    int     **b;
+    int     ***c;
+    //assignation
+    
+    //test
+    printf("valeur directe: %i\n", n);
+    printf("valeur sous ptr: %i\n", *a);
+    printf("valeur sous ptr (assignation): %i\n", *b);
+    printf("valeur sous ptr (assignation): %i\n", *c);
+    return(0);
 }
