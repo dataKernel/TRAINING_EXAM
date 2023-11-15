@@ -13,7 +13,10 @@ int     main(void)
     int     **b;
     int     ***c;
     //assignation
-    
+    n = 42;
+    a = &n;
+    b = &a;
+    c = &b;
     //test
     printf("valeur directe: %i\n", n);
     printf("valeur sous ptr: %i\n", *a);
