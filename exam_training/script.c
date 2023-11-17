@@ -1,27 +1,17 @@
 #include <stdio.h>
-#include <unistd.h>
 
-void    ft_putchar(char c)
+void    ft_div_mod(int a, int b, int *div, int *mod)
 {
-    write(1, &c, 1);
-}
-
-void    ft_swap(int *a, int *b)
-{
-    int     temp;
-
-    temp = *a;
-    *a = *b;
-    *b = temp;
+    *div = a / b;
+    *mod = a % b;
 }
 
 int     main(void)
 {
-    int     a = 10;
-    int     b = 29;
+    int     div;
+    int     mod;
 
-    printf("a:%i b:%i\n", a, b);
-    ft_swap(&a, &b);
-    printf("a:%i b:%i", a, b);
+    ft_div_mod(4, 2, &div, &mod);
+    printf("%i_%i", div, mod);
     return(0);
 }
