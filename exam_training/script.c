@@ -1,26 +1,27 @@
 #include <stdio.h>
+#include <unistd.h>
 
-void    ft_utlimate_ft(int *********n)
+void    ft_putchar(char c)
 {
-    return ;
+    write(1, &c, 1);
+}
+
+void    ft_swap(int *a, int *b)
+{
+    int     temp;
+
+    temp = *a;
+    *a = *b;
+    *b = temp;
 }
 
 int     main(void)
 {
-    //declaration
-    int     n;
-    int     *a;
-    int     **b;
-    int     ***c;
-    //assignation
-    n = 42;
-    a = &n;
-    b = &a;
-    c = &b;
-    //test
-    printf("valeur directe: %i\n", n);
-    printf("valeur sous ptr: %p\n", a);
-    printf("valeur sous ptr (assignation): %p\n", b);
-    printf("valeur sous ptr (assignation): %p\n", c);
+    int     a = 10;
+    int     b = 29;
+
+    printf("a:%i b:%i\n", a, b);
+    ft_swap(&a, &b);
+    printf("a:%i b:%i", a, b);
     return(0);
 }
