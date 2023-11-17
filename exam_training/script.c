@@ -1,17 +1,22 @@
 #include <stdio.h>
 
-void    ft_div_mod(int a, int b, int *div, int *mod)
+void    ft_utlitmate_div_mod(int *a, int *b)
 {
-    *div = a / b;
-    *mod = a % b;
+    int     temp;
+
+    temp = *a;
+    *a /= *b;
+    *b = temp % *b;
 }
 
 int     main(void)
 {
-    int     div;
-    int     mod;
+    int     a;
+    int     b;
 
-    ft_div_mod(4, 2, &div, &mod);
-    printf("%i_%i", div, mod);
+    a = 10;
+    b = 2;
+    ft_utlitmate_div_mod(&a, &b);
+    printf("a:%i__b:%i", a, b);
     return(0);
 }
