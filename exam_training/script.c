@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+#define SIZE_TAB 5
+
 void    ft_ultitmate_div_mod(int *a, int *b)
 {
     int     temp;
@@ -21,25 +23,32 @@ int     ft_strlen(char *str)
 
 void    ft_rev_tab(int *tab, int size)
 {
+    int     temp;
+    int     last;
     int     i;
 
     i = 0;
-    
-}
-
-void    ft_putchar(char c)
-{
-    write(1, &c, 1);
+    last = size - 1;
+    while(i < size / 2)
+    {
+        temp = tab[i];
+        tab[i] = tab[last];
+        tab[last] = temp;
+        i++;
+        last--;
+    }
 }
 
 int     main(void)
 {
-    int     tab[5] = {12 -4, 0, 1, 32};
-    int     a;
-    int     b;
+    int     tab[SIZE_TAB] = {12, -4, 0, 1, 32};
 
-    a = 10;
-    b = 2;
-    ft_ultitmate_div_mod(&a, &b);
+    //check tab avant func
+    for(int i = 0; i < SIZE_TAB; i++)
+        printf("tab[%i]->%i__", i, tab[i]);
+    printf("\n");
+    ft_rev_tab(tab, SIZE_TAB);
+    for(int i = 0; i < SIZE_TAB; i++)
+        printf("tab[%i]->%i__", i, tab[i]);
     return(0);
 }
