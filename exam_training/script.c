@@ -1,16 +1,10 @@
 #include <stdio.h>
+#include <unistd.h>
 
-#define SIZE_TAB 5
-
-void    ft_ultitmate_div_mod(int *a, int *b)
+void    ft_putchar(char c)
 {
-    int     temp;
-
-    temp = *a;
-    *a /= *b;
-    *b = temp % *b;
+    write(1, &c, 1);
 }
-
 int     ft_strlen(char *str)
 {
     int     i;
@@ -21,58 +15,30 @@ int     ft_strlen(char *str)
     return(i);
 }
 
-void    ft_rev_tab(int *tab, int size)
+char    *ft_strrev(char *str)
 {
-    int     temp;
-    int     last;
+    char    temp;
+    int     size_str;
     int     i;
 
+    size_str = ft_strlen(str);
     i = 0;
-    last = size - 1;
-    while(i < size / 2)
+    while(i < size_str / 2)
     {
-        temp = tab[i];
-        tab[i] = tab[last];
-        tab[last] = temp;
+        temp = str[i];
+        str[i] = str[size_str - 1];
+        str[size_str - 1] = temp;
+        size_str--;
         i++;
-        last--;
     }
-}
-
-void    ft_sort_int_tab(int *tab, int size)
-{
-    int     temp;
-    int     i;
-    int     j;
-
-    i = 0;
-    while(i < size)
-    {
-        j = i + 1;
-        while(j < size)
-        {
-            if(tab[j] < tab[i])
-            {
-                temp = tab[i];
-                tab[i] = tab[j];
-                tab[j] = temp;
-            }
-            j++;
-        }
-        i++;
-    }   
+    return(str);
 }
 
 int     main(void)
 {
-    int     tab[SIZE_TAB] = {12, -4, 0, 1, 32};
+    char    tab[5] = "datas";
 
-    //check tab avant func
-    for(int i = 0; i < SIZE_TAB; i++)
-        printf("tab[%i]->%i__", i, tab[i]);
-    printf("\n");
-    ft_sort_int_tab(tab, SIZE_TAB);
-    for(int i = 0; i < SIZE_TAB; i++)
-        printf("tab[%i]->%i__", i, tab[i]);
+    ft_strrev(tab);
+    printf("%s", tab);
     return(0);
 }
