@@ -1,35 +1,29 @@
-const		obj =
-{
-	x: 10,
-	y: 10,
-	
-	calcul_aire()
-	{
-		let		res;
+// In robot, create a getter method named energyLevel using the get keyword. Leave the function body blank for now.
+// 2.
+// Inside the getter method, add an if statement to check if this._energyLevel is a number using the typeof operator. If that condition is truthy, return 'My current energy level is ENERGYLEVEL'. Replace ENERGYLEVEL with the value of this._energyLevel.
+// Make sure you return the string and not logging it to the console.
+// Checkpoint 3 Step instruction is unavailable until previous steps are completed
+// 3.
+// If this._energyLevel isn’t a number it could be that the _energyLevel property was altered. Let’s add a default return statement for when such a scenario arises.
+// Add an else statement that returns 'System malfunction: cannot retrieve energy level'.
+// Checkpoint 4 Step instruction is unavailable until previous steps are completed
+// 4.
+// Log the result of calling the getter method energyLevel on robot to the console.
+// Notice that the method will return a formatted response rather than just accessing a property!
 
-		res = this.x * this.y;
-		return(res);
-	},
+const	robot =
+{
+	//membres
+	_model: "1E78V2",
+	_energyLevel: 100,
+	//methodes
+	get 	energyLevel()
+	{
+		if(typeof(this._energyLevel) == "number")
+			return(`My current energy level is ${this._energyLevel}.`);
+		else
+			return("System malfunction: cannot retrieve energy level.");
+	}
 };
 
-const	obj2 =
-{
-	//dangereux il faudra tjs set les membres avant de call la methode
-	x: undefined,
-	y: undefined,
-
-	calcul_aire()
-	{
-		let		res;
-
-		res = this.x * this.y;
-		return(res);
-	}
-}
-
-let		aire_rectangle = obj.calcul_aire();
-obj2.x = 2;
-obj2.y = 3;
-console.log(obj2);
-aire_rectangle = obj2.calcul_aire();
-console.log(aire_rectangle);
+console.log(robot.energyLevel);
