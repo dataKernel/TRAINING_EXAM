@@ -1,29 +1,33 @@
-// In robot, create a getter method named energyLevel using the get keyword. Leave the function body blank for now.
+// Instead of making individual robots like we’ve been doing, let’s make a factory 
+//function to make robots as we please!
+// Create a factory function named robotFactory that has two parameters model and 
+//mobile. Make the function return an object.In the object, add a key of model with 
+//the value of the model parameter.Add another property that has a key of mobile with 
+//a value of the mobile parameter.
+// Then add a method named beep without a parameter that will log 'Beep Boop' to the console.
 // 2.
-// Inside the getter method, add an if statement to check if this._energyLevel is a number using the typeof operator. If that condition is truthy, return 'My current energy level is ENERGYLEVEL'. Replace ENERGYLEVEL with the value of this._energyLevel.
-// Make sure you return the string and not logging it to the console.
-// Checkpoint 3 Step instruction is unavailable until previous steps are completed
+// Use your factory function by declaring a const variable named tinCan.Assign 
+//to tinCan the value of calling robotFactory with the first argument of 
+//'P-500' and the second argument of true.
 // 3.
-// If this._energyLevel isn’t a number it could be that the _energyLevel property was altered. Let’s add a default return statement for when such a scenario arises.
-// Add an else statement that returns 'System malfunction: cannot retrieve energy level'.
-// Checkpoint 4 Step instruction is unavailable until previous steps are completed
-// 4.
-// Log the result of calling the getter method energyLevel on robot to the console.
-// Notice that the method will return a formatted response rather than just accessing a property!
+// Let’s now check what tinCan can do !Call.beep() on tinCan.
+// You should see 'Beep Boop' printed to the console which means the factory 
+//function produced a robot object! Play around with tinCan 
+//to check the other properties!
 
-const	robot =
+const		robotFactory = (model, mobile) =>
 {
-	//membres
-	_model: "1E78V2",
-	_energyLevel: 100,
-	//methodes
-	get 	energyLevel()
+	const	obj =
 	{
-		if(typeof(this._energyLevel) == "number")
-			return(`My current energy level is ${this._energyLevel}.`);
-		else
-			return("System malfunction: cannot retrieve energy level.");
-	}
+		model: model,
+		mobile: mobile,
+		beep()
+		{
+			console.log("Beep Boop");
+		}
+	};
+	return(obj);
 };
 
-console.log(robot.energyLevel);
+const	tinCan = robotFactory("P-500", true);
+tinCan.beep();
