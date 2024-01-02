@@ -15,19 +15,29 @@
 //function produced a robot object! Play around with tinCan 
 //to check the other properties!
 
-const		robotFactory = (model, mobile) =>
+const	factory = (x, y) =>
 {
 	const	obj =
 	{
-		model: model,
-		mobile: mobile,
-		beep()
-		{
-			console.log("Beep Boop");
-		}
+		x: x,
+		y: y,
+		dire(){console.log("ttt")}
 	};
 	return(obj);
 };
 
-const	tinCan = robotFactory("P-500", true);
-tinCan.beep();
+const	obj = 
+{
+	x: 12,
+	y: 11,
+	dire()
+	{
+		console.log("ttt");
+	}
+};
+
+const	test = (varia) =>
+	varia + 1;
+
+console.log(obj);
+console.log(factory(100, 50));
