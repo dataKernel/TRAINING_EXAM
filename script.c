@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdbool.h>
+
 
 int    ft_strlen(char *str)
 {
@@ -12,24 +14,34 @@ int    ft_strlen(char *str)
 
 int     ft_atoi(char *str)
 {
+    bool    check;
+
     int     res;
     int     i;
 
+    check = false;
     i = 0;
-    res = str[i] - '0';
-    while(i < ft_strlen(str) - 1)
+    res = 0;
+    if(str[i] == '-')
     {
-        res = res * 10 + (str[i + 1] - '0');
+        check = true;
         i++;
     }
-    return(res);     
+    while(i < ft_strlen(str))
+    {
+        res = res * 10 + (str[i] - '0');
+        i++;
+    }
+    if(check)
+        return(res * -1);
+    return(res);
 }
 
 int     main(void)
 {
     int     n;
 
-    n = ft_atoi("253");
+    n = ft_atoi("-123");
     printf("%i", n);
     return(0);
 }
