@@ -1,47 +1,39 @@
 #include <stdio.h>
-#include <stdbool.h>
 
 
-int    ft_strlen(char *str)
+void    ft_sort_integer_table(int *tab, int size)
 {
     int     i;
+    int     j;
+    int     tmp;
 
     i = 0;
-    while(str[i])
-        i++;
-    return(i);
-}
-
-int     ft_atoi(char *str)
-{
-    bool    check;
-
-    int     res;
-    int     i;
-
-    check = false;
-    i = 0;
-    res = 0;
-    if(str[i] == '-')
+    while(i < size)
     {
-        check = true;
+        j = i + 1;
+        while(j < size)
+        {
+            if(tab[i] > tab[j])
+            {
+                tmp = tab[i];
+                tab[i] = tab[j];
+                tab[j] = tmp;
+            }
+            j++;
+        }
         i++;
     }
-    while(i < ft_strlen(str))
-    {
-        res = res * 10 + (str[i] - '0');
-        i++;
-    }
-    if(check)
-        return(res * -1);
-    return(res);
 }
 
 int     main(void)
 {
-    int     n;
-
-    n = ft_atoi("-123");
-    printf("%i", n);
+    int     tab[5] = {-2, 0, 34, 99, 1};
+    int     i;
+    //check tab 
+    for(i = 0; i < 5; i++)
+        printf("[%i]:%i\n", i, tab[i]);
+    ft_sort_integer_table(tab, 5);
+    for(i = 0; i < 5; i++)
+        printf("[%i]:%i\n", i, tab[i]);
     return(0);
 }
