@@ -1,39 +1,22 @@
 #include <stdio.h>
 
-
-void    ft_sort_integer_table(int *tab, int size)
+int     ft_iterative_factorial(int nb)
 {
+    int     res;
     int     i;
-    int     j;
-    int     tmp;
 
+    res = 1;
     i = 0;
-    while(i < size)
+    while(i < nb)
     {
-        j = i + 1;
-        while(j < size)
-        {
-            if(tab[i] > tab[j])
-            {
-                tmp = tab[i];
-                tab[i] = tab[j];
-                tab[j] = tmp;
-            }
-            j++;
-        }
+        res = res * (i + 1); 
         i++;
     }
+    return(res);
 }
 
 int     main(void)
 {
-    int     tab[5] = {-2, 0, 34, 99, 1};
-    int     i;
-    //check tab 
-    for(i = 0; i < 5; i++)
-        printf("[%i]:%i\n", i, tab[i]);
-    ft_sort_integer_table(tab, 5);
-    for(i = 0; i < 5; i++)
-        printf("[%i]:%i\n", i, tab[i]);
+    printf("%i", ft_iterative_factorial(3));
     return(0);
 }
