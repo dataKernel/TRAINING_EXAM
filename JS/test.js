@@ -4,17 +4,15 @@ const   mainObject =
     {
         a: 10,
         b: 20,
-        info: "lvl1",
+        info: "mainArray",
         nestedArray_lvl1:
         {
             a: 100,
             b: 200,
-            info: "lvl2"
+            info: "lvl_1 nested array"
         }
     }
 };
 
-//affichage du main Array via le main Object
-console.log(mainObject.mainArray);
-//2e possibilité de syntaxe via `symbolic key``
-console.log(mainObject['mainArray']);
+//affichage du Nested Array 
+console.log(mainObject.mainArray.nestedArray_lvl1);
