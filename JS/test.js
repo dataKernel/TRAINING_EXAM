@@ -14,3 +14,7 @@ const   mainObject =
     }
 };
 
+//affichage du main Array via le main Object
+console.log(mainObject.mainArray);
+//2e possibilité de syntaxe via `symbolic key``
+console.log(mainObject['mainArray']);
