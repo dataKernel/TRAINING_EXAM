@@ -1,18 +1,21 @@
-const   mainObject =
+//méthode classique
+const   afficher_nbr = (n) => 
 {
-    mainArray:
-    {
-        a: 10,
-        b: 20,
-        info: "mainArray",
-        nestedArray_lvl1:
-        {
-            a: 100,
-            b: 200,
-            info: "lvl_1 nested array"
-        }
-    }
-};
-
-//affichage du Nested Array 
-console.log(mainObject.mainArray.nestedArray_lvl1);
+    console.log("le nombre est " + n);
+}
+//méthode Factory
+function    usine_guerrier(nom, force, armure, arme)
+{
+    return{
+        nom: nom,
+        force: force,
+        armure: armure,
+        arme: arme
+    };
+}
+//generation de 3 guerriers différents (litteral object) à la volée
+const   guts = usine_guerrier("guts", 1000, 500, "epée géante");
+const   lancelot = usine_guerrier("lancelot", 300, 100, "épée de chevalier");
+const   ambre = usine_guerrier("ambre", 240, -40, "caipirinha");
+//checking de la gen d'objets via méthodes Factory
+console.log(guts, lancelot, ambre);
