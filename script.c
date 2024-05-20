@@ -1,22 +1,33 @@
-#include <stdio.h>
+#include <unistd.h>
 
-int     ft_iterative_factorial(int nb)
+void    ft_putchar(char c)
 {
-    int     res;
+    write(1, &c, 1);
+}
+
+void    ft_print_numbers(void)
+{
     int     i;
 
-    res = 1;
-    i = 0;
-    while(i < nb)
+    i = '0';
+    while(i <= '9')
     {
-        res = res * (i + 1); 
+        ft_putchar(i);
         i++;
     }
-    return(res);
+}
+
+void    ft_check_is_neg(int nbr)
+{
+    if(nbr >= 0)
+        ft_putchar('P');
+    else
+        ft_putchar('N');
 }
 
 int     main(void)
 {
-    printf("%i", ft_iterative_factorial(3));
+    ft_check_is_neg(0);
+    ft_check_is_neg(-2);
     return(0);
 }
