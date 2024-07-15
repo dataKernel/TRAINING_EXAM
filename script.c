@@ -1,33 +1,18 @@
-#include <unistd.h>
+#include <stdio.h>
 
-void    ft_putchar(char c)
+void    ft_div_mod(int a, int b, int *div, int *mod)
 {
-    write(1, &c, 1);
-}
-
-void    ft_print_numbers(void)
-{
-    int     i;
-
-    i = '0';
-    while(i <= '9')
-    {
-        ft_putchar(i);
-        i++;
-    }
-}
-
-void    ft_check_is_neg(int nbr)
-{
-    if(nbr >= 0)
-        ft_putchar('P');
-    else
-        ft_putchar('N');
+    *div = a / b;
+    *mod = a % b;
 }
 
 int     main(void)
 {
-    ft_check_is_neg(0);
-    ft_check_is_neg(-2);
+    int     div = 0;
+    int     mod = 0;
+
+    printf("PRE(nbr): div_%i, mod_%i\n", div, mod);
+    ft_div_mod(4, 2, &div, &mod);
+    printf("POST(nbr): div_%i, mod_%i\n", div, mod);
     return(0);
 }
