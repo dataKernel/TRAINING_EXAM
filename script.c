@@ -1,42 +1,38 @@
 #include <stdio.h>
-#include <unistd.h>
 
-void ft_putchar(char c)
+#define SIZE_TAB    5
+
+void    ft_sort_integer_table(int *tab, int size)
 {
-    write(1, &c, 1);
-}
+    int     temp;
+    int     minPos;
 
-int ft_strlen(char *str)
-{
-    int     i = 0;
-
-    while (str[i])
-        i++;
-    return (i);
-}
-
-char *ft_strrev(char *str)
-{
-    char              temp;
-
-    const int       sizeStr = ft_strlen(str);
-    int                 i = 0;
-    int                 j = sizeStr - 1;
-
-    while(i < sizeStr / 2)
+    for(int i = 0; i < size - 1; i++)
     {
-        temp = str[i];
-        str[i] = str[j];
-        str[j] = temp;
-        i++;
-        j--;
+        minPos = i;
+        for(int j = i + 1; j < size; j++)
+        {
+            if(tab[j] < tab[minPos])
+                minPos = j;
+        }
+        temp = tab[i];
+        tab[i] = tab[minPos];
+        tab[minPos] = temp;
     }
-    return(str);
 }
 
-int main(void)
+int     main(void)
 {
-    char    str[] = "abcde";
-    printf("%s", ft_strrev(str));
-    return (0);
+    int     tab[5] = {0, -2, -4, 12, 42};
+    for(int i = 0; i < SIZE_TAB; i++)
+    {
+        printf("(pre)array[%i]:%i\n", i, tab[i]);
+    }
+    ft_sort_integer_table(tab, SIZE_TAB);   
+    printf("\n\n");
+    for(int i = 0; i < SIZE_TAB; i++)
+    {
+        printf("(pre)array[%i]:%i\n", i, tab[i]);
+    }
+    return(0);
 }
