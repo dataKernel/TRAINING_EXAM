@@ -1,38 +1,20 @@
 #include <stdio.h>
 
-#define SIZE_TAB    5
-
-void    ft_sort_integer_table(int *tab, int size)
+int     ft_iterative_factorial(int nb)
 {
-    int     temp;
-    int     minPos;
+    int     res = 1;
+    int     i = 1;
 
-    for(int i = 0; i < size - 1; i++)
+    while(i < nb)
     {
-        minPos = i;
-        for(int j = i + 1; j < size; j++)
-        {
-            if(tab[j] < tab[minPos])
-                minPos = j;
-        }
-        temp = tab[i];
-        tab[i] = tab[minPos];
-        tab[minPos] = temp;
+        res *= i;
+        i++;
     }
+    return(res);
 }
 
 int     main(void)
 {
-    int     tab[5] = {0, -2, -4, 12, 42};
-    for(int i = 0; i < SIZE_TAB; i++)
-    {
-        printf("(pre)array[%i]:%i\n", i, tab[i]);
-    }
-    ft_sort_integer_table(tab, SIZE_TAB);   
-    printf("\n\n");
-    for(int i = 0; i < SIZE_TAB; i++)
-    {
-        printf("(pre)array[%i]:%i\n", i, tab[i]);
-    }
+    printf("res: %i", ft_iterative_factorial(4));
     return(0);
 }
