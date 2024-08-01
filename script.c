@@ -19,7 +19,7 @@ int		ft_iterative_power(int nb, int power)
 
 int		main(void)
 {
-	int		res = ft_iterative_power(4, 2);
+	int		res = ft_iterative_power(-4, 2);
 
 	printf("res: %i", res);
 	return(0);
