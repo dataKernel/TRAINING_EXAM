@@ -1,24 +1,26 @@
 #include <stdio.h>
 
-int	ft_iterative_pow(int nb, int pow)
+int		ft_iterative_power(int nb, int power)
 {
-	int	i;
-	int	res;
+	int		i = 0;
+	int		res = 1;
 
-	i = 0;
-	res = 1;
-	while (i < pow)
+	if(power < 0)
+		return(0);
+	if(power == 0)
+		return(1);
+	while(i < power)
 	{
-		res_state printf("res_state:%i\n", res);
 		res *= nb;
 		i++;
 	}
-	return (res);
+	return(res);
 }
 
-int	main(void)
+int		main(void)
 {
-	int check = ft_iterative_pow(3, 3);
-	printf("%i", check);
-	return (0);
+	int		res = ft_iterative_power(4, 2);
+
+	printf("res: %i", res);
+	return(0);
 }
