@@ -1,46 +1,40 @@
-#include <unistd.h>
 #include <stdio.h>
+#include <stdbool.h>
 
-void    ft_putchar(char c)
+#define PRENOM "Ambre"
+
+bool    compare_strings(char *s1, char *s2)
 {
-    write(1, &c, 1);
-}
+    bool    check = true;
+    int     i = 0;
 
-void    lowcase_to_upcase(char *str)
-{
-    int     i;
 
-    i = 0;
-    while(str[i])
+    while(check && (s1[i] || s2[i]))
     {
-        if(str[i] >= 'A' && str[i] <= 'Z')
-            str[i] += 32;
+        if(s1[i] == s2[i])
+            check = true;
+        else
+            check = false;
         i++;
     }
+    return(check);
 }
 
-int     main(int argc, char *argv[])
+int     return_iterations_firstname(char *str)
 {
-    int     i;
+    bool    check;
+    int     i = 0;
     int     j;
 
-    i = 0;
-    if(argc != 2)
+    while(str[i])
     {
-        ft_putchar('\n');
-        return(0);
-    }
-    lowcase_to_upcase(argv[1]);
-    while(argv[1][i])
-    {
-        j = 0;
-        while(j < argv[1][i] - ('a' - 1))
-        {
-            ft_putchar(argv[1][i]);
-            j++;
-        }
         i++;
     }
-    ft_putchar('\n');
+    return(0);
+}
+
+int     main(void)
+{
+    printf(compare_strings("laxcelot", PRENOM) ? "true" : "false");
     return(0);
 }
