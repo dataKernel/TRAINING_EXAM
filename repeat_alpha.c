@@ -9,7 +9,7 @@ bool    compare_strings(char *s1, char *s2)
     int     i = 0;
 
 
-    while(check && (s1[i] || s2[i]))
+    while(check && (s1[i] && s2[i]))
     {
         if(s1[i] == s2[i])
             check = true;
@@ -22,12 +22,11 @@ bool    compare_strings(char *s1, char *s2)
 
 int     return_iterations_firstname(char *str)
 {
-    bool    check;
     int     i = 0;
-    int     j;
 
     while(str[i])
     {
+        printf("i:%i  char:%c", i, str[i]);
         i++;
     }
     return(0);
@@ -35,6 +34,7 @@ int     return_iterations_firstname(char *str)
 
 int     main(void)
 {
+    //return_iterations_firstname("un test avec Ambre et ambre et Ambre.");
     printf(compare_strings("laxcelot", PRENOM) ? "true" : "false");
     return(0);
 }

@@ -1,9 +1,8 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-//--------- MACROS ---------
 #define PRENOM "Ambre"
-//--------------------------
+
 bool	compare_strings(char *s1, char *s2)
 {
 	bool	check;
@@ -13,7 +12,9 @@ bool	compare_strings(char *s1, char *s2)
 	i = 0;
 	while (check && (s1[i] && s2[i]))
 	{
-		if (s1[i] != s2[i])
+		if (s1[i] == s2[i])
+			check = true;
+		else
 			check = false;
 		i++;
 	}
@@ -22,39 +23,25 @@ bool	compare_strings(char *s1, char *s2)
 
 int	return_iterations_firstname(char *str)
 {
-	
+	int	i, counter = 0;
 
-	i = 0;
 	while (str[i])
 	{
+		if(str[i] == 'A')
+		{
+			if(compare_strings(str + i, PRENOM))
+				counter++;
+		}
 		i++;
 	}
-	return (0);
+	return (counter);
 }
 
 int	main(void)
 {
-	printf(compare_strings("lancelot", "lancelot") ? "true" : "false");
+	int		ite = 0;
+	ite = return_iterations_firstname("un test avec Ambre et ambre et Ambre.");
+	printf("ite: %i", ite);
+	//printf(compare_strings("Ambre", PRENOM) ? "true" : "false");
 	return (0);
 }
-
-// #include <stdio.h>
-
-// //ex:result -> 0, 1, 1, 2, 3, 5, 8, 13...
-
-// int		ft_fibonacci(int index)
-// {
-// 	if(index < 0)
-// 		return(-1);
-// 	if(index == 0)
-// 		return(0);
-// 	if(index == 1)
-// 		return(1);
-
-// 	//...
-// }
-
-// int		main(void)
-// {
-// 	return(0);
-// }
