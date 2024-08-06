@@ -1,47 +1,16 @@
-#include <stdbool.h>
 #include <stdio.h>
 
-#define PRENOM "Ambre"
-
-bool	compare_strings(char *s1, char *s2)
+int		ft_fibonacci(int index)
 {
-	bool	check;
-	int		i;
-
-	check = true;
-	i = 0;
-	while (check && (s1[i] && s2[i]))
-	{
-		if (s1[i] == s2[i])
-			check = true;
-		else
-			check = false;
-		i++;
-	}
-	return (check);
+	if(index == 0)
+		return(0);
+	if(index == 1)
+		return(1);
+	return(123);
 }
 
-int	return_iterations_firstname(char *str)
+int		main(void)
 {
-	int	i, counter = 0;
-
-	while (str[i])
-	{
-		if(str[i] == 'A')
-		{
-			if(compare_strings(str + i, PRENOM))
-				counter++;
-		}
-		i++;
-	}
-	return (counter);
-}
-
-int	main(void)
-{
-	int		ite = 0;
-	ite = return_iterations_firstname("un test avec Ambre et ambre et Ambre.");
-	printf("ite: %i", ite);
-	//printf(compare_strings("Ambre", PRENOM) ? "true" : "false");
-	return (0);
+	printf("%i", ft_fibonacci(12));
+	return(0);
 }
