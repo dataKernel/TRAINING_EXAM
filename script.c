@@ -7,7 +7,7 @@ int		ft_fibonacci_iterative(int index)
 	int	index0;
 	int	index1;
 
-	i = 0;
+	i = 1;
 	res = 0;
 	index0 = 0;
 	index1 = 1;
@@ -31,12 +31,16 @@ int		ft_fibonacci_recursive(int index)
 	int		res = 0;
 
 	if(index < 0 || index == 0)
+		return(0);
+	if(index == 1)
+		return(1);
+	return(ft_fibonacci_recursive(index -2) + ft_fibonacci_recursive(index - 1));
 }
 
 
 int	main(void)
 {
-	for (int i = 0; i <= 5; i++)
+	for (int i = 0; i <= 6; i++)
 		printf("fib(%i):%i\n", i, ft_fibonacci_iterative(i));
 	return (0);
 }
