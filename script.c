@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int	ft_fibonacci_iterative(int index)
+int		ft_fibonacci_iterative(int index)
 {
 	int	i;
 	int	res;
@@ -11,7 +11,7 @@ int	ft_fibonacci_iterative(int index)
 	res = 0;
 	index0 = 0;
 	index1 = 1;
-	if (index == 0 || index == -1)
+	if (index == 0 || index < 0)
 		return (0);
 	if (index == 1)
 		return (1);
@@ -25,6 +25,14 @@ int	ft_fibonacci_iterative(int index)
 	}
 	return (res);
 }
+
+int		ft_fibonacci_recursive(int index)
+{
+	int		res = 0;
+
+	if(index < 0 || index == 0)
+}
+
 
 int	main(void)
 {
