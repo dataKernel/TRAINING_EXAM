@@ -1,5 +1,10 @@
 #include <stdio.h>
 
+//protos
+int		ft_sqrt(int);
+int		ft_is_prime(int);
+int		ft_find_next_prime(int);
+
 int		ft_sqrt(int nb)
 {
 	int		i = 1;
@@ -12,6 +17,21 @@ int		ft_sqrt(int nb)
 	}
 	//in case we got a non integer number
 	return(i - 1);
+}
+
+int		ft_find_next_prime(int nb)
+{
+	int		i = 2;
+	if(ft_is_prime(nb))
+		return(nb);
+	else
+	{
+		while(!ft_is_prime(nb))
+		{
+			nb++;
+		}
+	}
+	return(nb);
 }
 
 int		ft_is_prime(int nb)
@@ -32,6 +52,7 @@ int		ft_is_prime(int nb)
 
 int	main(void)
 {
-	printf("prime: %i", ft_is_prime(23484984));
+	printf("prime: %i", ft_is_prime(11));
+	printf("prime next: %i", ft_find_next_prime(12));
 	return (0);
 }
