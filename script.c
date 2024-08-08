@@ -1,46 +1,20 @@
 #include <stdio.h>
 
-int		ft_fibonacci_iterative(int index)
+int 	ft_sqrt(int nb)
 {
-	int	i;
-	int	res;
-	int	index0;
-	int	index1;
+	int		i = 1;
 
-	i = 1;
-	res = 0;
-	index0 = 0;
-	index1 = 1;
-	if (index == 0 || index < 0)
-		return (0);
-	if (index == 1)
-		return (1);
-	// we know for sure know our calcul will start on index 2 as the min value
-	while (i < index)
+	while(i * i < nb)
 	{
-		res = index0 + index1;
-		index0 = index1;
-		index1 = res;
 		i++;
+		if(i * i == nb)
+			return(i);
 	}
-	return (res);
+	return(0);
 }
 
-int		ft_fibonacci_recursive(int index)
+int		main(void)
 {
-	int		res = 0;
-
-	if(index < 0 || index == 0)
-		return(0);
-	if(index == 1)
-		return(1);
-	return(ft_fibonacci_recursive(index -2) + ft_fibonacci_recursive(index - 1));
-}
-
-
-int	main(void)
-{
-	for (int i = 0; i <= 6; i++)
-		printf("fib(%i):%i\n", i, ft_fibonacci_iterative(i));
-	return (0);
+	printf("%i", ft_sqrt(25));
+	return(0);
 }
