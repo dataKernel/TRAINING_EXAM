@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int 	ft_sqrt(int nb)
+int		ft_sqrt(int nb)
 {
 	int		i = 1;
 
@@ -10,11 +10,28 @@ int 	ft_sqrt(int nb)
 		if(i * i == nb)
 			return(i);
 	}
-	return(0);
+	//in case we got a non integer number
+	return(i - 1);
 }
 
-int		main(void)
+int		ft_is_prime(int nb)
 {
-	printf("%i", ft_sqrt(25));
-	return(0);
+	int	i;
+
+	i = 2;
+	if (nb == 0 || nb == 1)
+		return (0);
+	while (i < ft_sqrt(nb))
+	{
+		if (nb % i == 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	main(void)
+{
+	printf("prime: %i", ft_is_prime(23484984));
+	return (0);
 }
