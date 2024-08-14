@@ -34,7 +34,7 @@ int		main(void)
 	char	tabShort[SIZE_ARRAY_SHORT];
 
 	//ft_strcpy(tabStd, "abcd");
-	strcpy(tabStd, "abcd");
+	strcpy(tabShort, "abcd");
 	printf("tab:%s", tabStd);
 	return(0);
 }
