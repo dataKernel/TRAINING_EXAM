@@ -1,58 +1,40 @@
 #include <stdio.h>
+#include <string.h>
 
-//protos
-int		ft_sqrt(int);
-int		ft_is_prime(int);
-int		ft_find_next_prime(int);
+#define SIZE_ARRRAY_STD 	10
+#define SIZE_ARRAY_SHORT 	3
 
-int		ft_sqrt(int nb)
+int		ft_strlen(char *str)
 {
-	int		i = 1;
+	int		i = 0;
 
-	while(i * i < nb)
-	{
+	while(str[i])
 		i++;
-		if(i * i == nb)
-			return(i);
-	}
-	//in case we got a non integer number
-	return(i - 1);
+	return(i);
 }
 
-int		ft_find_next_prime(int nb)
+char 	*ft_strcpy(char *dst, char *src)
 {
-	int		i = 2;
-	if(ft_is_prime(nb))
-		return(nb);
-	else
-	{
-		while(!ft_is_prime(nb))
-		{
-			nb++;
-		}
-	}
-	return(nb);
-}
+	int		sizeSrc = ft_strlen(src);
+	int		i = 0;
 
-int		ft_is_prime(int nb)
-{
-	int	i;
-
-	i = 2;
-	if (nb == 0 || nb == 1)
-		return (0);
-	while (i < ft_sqrt(nb))
+	//test size
+	printf("size: %i", sizeSrc);
+	while(src[i])
 	{
-		if (nb % i == 0)
-			return (0);
+		dst[i] = src[i];
 		i++;
 	}
-	return (1);
+	return(dst);
 }
 
-int	main(void)
+int		main(void)
 {
-	printf("prime: %i", ft_is_prime(11));
-	printf("prime next: %i", ft_find_next_prime(12));
-	return (0);
+	char	tabStd[SIZE_ARRRAY_STD];
+	char	tabShort[SIZE_ARRAY_SHORT];
+
+	//ft_strcpy(tabStd, "abcd");
+	strcpy(tabStd, "abcd");
+	printf("tab:%s", tabStd);
+	return(0);
 }
