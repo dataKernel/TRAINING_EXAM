@@ -18,13 +18,12 @@ char 	*ft_strcpy(char *dst, char *src)
 	int		sizeSrc = ft_strlen(src);
 	int		i = 0;
 
-	//test size
-	printf("size: %i", sizeSrc);
 	while(src[i])
 	{
 		dst[i] = src[i];
 		i++;
 	}
+	dst[i] = src[i];
 	return(dst);
 }
 
@@ -33,8 +32,9 @@ int		main(void)
 	char	tabStd[SIZE_ARRRAY_STD];
 	char	tabShort[SIZE_ARRAY_SHORT];
 
-	//ft_strcpy(tabStd, "abcd");
-	strcpy(tabShort, "abcd");
-	printf("tab:%s", tabStd);
+	ft_strcpy(tabStd, "abcdef");
+	printf("tab:%s\n", tabStd);
+	ft_strcpy(tabShort, "abc");
+	printf("tab:%s", tabShort);
 	return(0);
 }
