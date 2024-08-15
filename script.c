@@ -11,7 +11,9 @@ bool	ft_str_is_equal(const char *s1, const char *s2)
 	bool	check = true;
 	int		i = 0;
 
-	while(s1[i] || s2[i])
+	//DEBUG check infos
+	//printf("s1:%s  s2:%s\n", s1, s2);
+	while(s2[i])
 	{
 		if(s1[i] != s2[i])
 			return(false);
@@ -26,7 +28,7 @@ char	*ft_strstr(char *str, char *toFind)
 
 	while(str[i])
 	{
-		if(ft_str_is_equal(str, toFind))
+		if(ft_str_is_equal(str + i, toFind))
 		{
 			return(str + i);
 		}
@@ -37,6 +39,6 @@ char	*ft_strstr(char *str, char *toFind)
 
 int		main(void)
 {
-	ft_strstr("lancelot code dur..", "code");
+	printf("%s", ft_strstr("lancelot code dur..", "code"));
 	return(0);
 }
