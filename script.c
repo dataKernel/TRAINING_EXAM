@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 
-#define SIZE_ARRRAY_STD 	10
-#define SIZE_ARRAY_SHORT 	3
+
+int		ft_strlen(char *);
+char	*ft_strncpy(char *, char *, unsigned int);
+
 
 int		ft_strlen(char *str)
 {
@@ -13,28 +15,28 @@ int		ft_strlen(char *str)
 	return(i);
 }
 
-char 	*ft_strcpy(char *dst, char *src)
+char 	*ft_strncpy(char *dst, char *src, unsigned int n)
 {
 	int		sizeSrc = ft_strlen(src);
 	int		i = 0;
 
-	while(src[i])
+	while(i < n)
 	{
-		dst[i] = src[i];
+		if(i >= sizeSrc)
+			dst[i] = '\0';
+		else
+			dst[i] = src[i];
 		i++;
 	}
-	dst[i] = src[i];
 	return(dst);
 }
 
 int		main(void)
 {
-	char	tabStd[SIZE_ARRRAY_STD];
-	char	tabShort[SIZE_ARRAY_SHORT];
+	char	tabStd[] = "Hello, World!";
+	char	tabShort[3];
 
-	ft_strcpy(tabStd, "abcdef");
-	printf("tab:%s\n", tabStd);
-	ft_strcpy(tabShort, "abc");
-	printf("tab:%s", tabShort);
+	ft_strncpy(tabStd + 7, tabStd, 5);
+	printf("tabStd: %s", tabStd);
 	return(0);
 }
