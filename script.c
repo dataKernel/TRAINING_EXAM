@@ -1,42 +1,42 @@
 #include <stdio.h>
-#include <string.h>
+#include <unistd.h>
+#include <stdbool.h>
 
+void	ft_putchar(char);
+bool	ft_str_is_equal(const char*, const char*);
+char	*ft_strstr(char *, char *);
 
-int		ft_strlen(char *);
-char	*ft_strncpy(char *, char *, unsigned int);
+bool	ft_str_is_equal(const char *s1, const char *s2)
+{
+	bool	check = true;
+	int		i = 0;
 
+	while(s1[i] || s2[i])
+	{
+		if(s1[i] != s2[i])
+			return(false);
+		i++;
+	}
+	return(check);
+}
 
-int		ft_strlen(char *str)
+char	*ft_strstr(char *str, char *toFind)
 {
 	int		i = 0;
 
 	while(str[i])
-		i++;
-	return(i);
-}
-
-char 	*ft_strncpy(char *dst, char *src, unsigned int n)
-{
-	int		sizeSrc = ft_strlen(src);
-	int		i = 0;
-
-	while(i < n)
 	{
-		if(i >= sizeSrc)
-			dst[i] = '\0';
-		else
-			dst[i] = src[i];
+		if(ft_str_is_equal(str, toFind))
+		{
+			return(str + i);
+		}
 		i++;
 	}
-	return(dst);
+	return(NULL);
 }
 
 int		main(void)
 {
-	char	tabStd[] = "Hello, World!";
-	char	tabShort[3];
-
-	ft_strncpy(tabStd + 7, tabStd, 5);
-	printf("tabStd: %s", tabStd);
+	ft_strstr("lancelot code dur..", "code");
 	return(0);
 }
