@@ -17,8 +17,24 @@ int		ft_str_is_alpha(char *str)
 	return(1);
 }
 
+int		ft_str_is_numeric(char *str)
+{
+	int		i;
+
+	i = 0;
+	while(str[i])
+	{
+		if(str[i] >= '0' && str[i] <= '9')
+			i++;
+		else
+			return(0);
+		i++;
+	}
+	return(1);
+}
+
 int		main(void)
 {
-	printf("%i", ft_str_is_alpha("sqmdlkfjqs>dmlkfj"));
+	printf("%i",ft_str_is_numeric("747847d3"));
 	return(0);
 }
