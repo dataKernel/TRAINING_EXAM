@@ -1,24 +1,36 @@
 #include <stdio.h>
 
-int		ft_str_is_uppercase(char *str)
+int		ft_strlen(char *str)
 {
 	int		i;
 
 	i = 0;
 	while(str[i])
+		i++;
+	return(i);
+}
+
+char	*ft_strcat(char *dst, char *src)
+{
+	int		indexSrc;
+	int		indexDst;
+
+	indexSrc = 0;
+	indexDst = ft_strlen(dst);
+	while(src[indexSrc])
 	{
-		if(str[i] >= 'A' && str[i] <= 'Z')
-			i++;
-		else
-			return(0);
+		dst[indexDst] = src[indexSrc];
+		indexDst++;
+		indexSrc++;
 	}
-	return(1);
+	return(dst);
 }
 
 int		main(void)
 {
-	char 	*str = "MLeFJLMKF";
+	char	tab[10] = "abc";
 
-	printf("%s", ft_str_is_uppercase(str) ? "true" : "false");
+	ft_strcat(tab, "de");
+	printf("post_tab: %s", tab);
 	return(0);
 }
