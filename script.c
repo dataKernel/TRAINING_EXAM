@@ -1,5 +1,10 @@
 #include <stdio.h>
 
+char	*ft_strncat(char *dest, char *src, int nb)
+{
+	return(dest);
+}
+
 int		ft_strlen(char *str)
 {
 	int		i;
@@ -12,11 +17,12 @@ int		ft_strlen(char *str)
 
 char	*ft_strcat(char *dst, char *src)
 {
-	int		indexSrc;
 	int		indexDst;
+	int		indexSrc;
 
-	indexSrc = 0;
 	indexDst = ft_strlen(dst);
+	printf("truc: %i", indexDst);
+	indexSrc = 0;
 	while(src[indexSrc])
 	{
 		dst[indexDst] = src[indexSrc];
@@ -28,9 +34,15 @@ char	*ft_strcat(char *dst, char *src)
 
 int		main(void)
 {
-	char	tab[10] = "abc";
 
-	ft_strcat(tab, "de");
-	printf("post_tab: %s", tab);
+	//reprod test case de 1
+	char	tab[] = "abcd";
+
+	int		size = ft_strlen(tab);
+	printf("size: %i", size);
+	ft_strcat(tab, "ef");
+	size = ft_strlen(tab);
+	printf("size: %i", size);
+	printf("res: %s", tab);
 	return(0);
 }
