@@ -1,9 +1,5 @@
 #include <stdio.h>
-
-char	*ft_strncat(char *dest, char *src, int nb)
-{
-	return(dest);
-}
+#include <string.h>
 
 int		ft_strlen(char *str)
 {
@@ -15,34 +11,31 @@ int		ft_strlen(char *str)
 	return(i);
 }
 
-char	*ft_strcat(char *dst, char *src)
+char	*ft_strncat(char *dst, char *src, int nb)
 {
-	int		indexDst;
 	int		indexSrc;
+	int		indexDst;
 
-	indexDst = ft_strlen(dst);
-	printf("truc: %i", indexDst);
 	indexSrc = 0;
-	while(src[indexSrc])
+	indexDst = ft_strlen(dst);
+	while(indexSrc < nb)
 	{
 		dst[indexDst] = src[indexSrc];
 		indexDst++;
 		indexSrc++;
 	}
+	dst[indexDst] = '\0';
+
 	return(dst);
 }
 
 int		main(void)
 {
+	char	s1[5] = "abcd";
+	char	*s2 = "zeqsdmlkfjsdflmj";
 
-	//reprod test case de 1
-	char	tab[] = "abcd";
-
-	int		size = ft_strlen(tab);
-	printf("size: %i", size);
-	ft_strcat(tab, "ef");
-	size = ft_strlen(tab);
-	printf("size: %i", size);
-	printf("res: %s", tab);
+	ft_strncat(s1, s2, 2);
+	printf("%s", s1);
+	printf("%s", s1);
 	return(0);
 }
