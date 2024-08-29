@@ -1,41 +1,21 @@
 #include <stdio.h>
-#include <string.h>
+#include <unistd.h>
 
-int     ft_strlen(char *str)
+void    ft_putchar(char c)
+{
+    write(1, &c, 1);
+}
+
+int     main(int argc, char *argv[])
 {
     int     i;
 
     i = 0;
-    while(str[i])
+    while(argv[0][i])
     {
+        ft_putchar(argv[0][i]);
         i++;
     }
-    return(i);
-}
 
-char    *ft_strncat(char dst[], char *src, int nb)
-{
-    int     indexSrc = 0;
-    int     indexDst = ft_strlen(dst);
-
-    while(indexSrc < nb && src[indexSrc])
-    {
-        dst[indexDst] = src[indexSrc];
-        indexDst++;
-        indexSrc++;
-    }
-    dst[indexDst] = '\0';
-
-    return(dst);
-}
-
-int     main(void)
-{
-    char    tab[10] = "abc";
-    char    *src = "desdmflkj";
-
-    ft_strncat(tab, src, 2);
-    printf("%s", tab);
-    
     return(0);
 }
