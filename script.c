@@ -1,41 +1,41 @@
 #include <stdio.h>
 #include <string.h>
 
-int		ft_strlen(char *str)
+int     ft_strlen(char *str)
 {
-	int		i;
+    int     i;
 
-	i = 0;
-	while(str[i])
-		i++;
-	return(i);
+    i = 0;
+    while(str[i])
+    {
+        i++;
+    }
+    return(i);
 }
 
-char	*ft_strncat(char *dst, char *src, int nb)
+char    *ft_strncat(char dst[], char *src, int nb)
 {
-	int		indexSrc;
-	int		indexDst;
+    int     indexSrc = 0;
+    int     indexDst = ft_strlen(dst);
 
-	indexSrc = 0;
-	indexDst = ft_strlen(dst);
-	while(indexSrc < nb)
-	{
-		dst[indexDst] = src[indexSrc];
-		indexDst++;
-		indexSrc++;
-	}
-	dst[indexDst] = '\0';
+    while(indexSrc < nb && src[indexSrc])
+    {
+        dst[indexDst] = src[indexSrc];
+        indexDst++;
+        indexSrc++;
+    }
+    dst[indexDst] = '\0';
 
-	return(dst);
+    return(dst);
 }
 
-int		main(void)
+int     main(void)
 {
-	char	s1[5] = "abcd";
-	char	*s2 = "zeqsdmlkfjsdflmj";
+    char    tab[10] = "abc";
+    char    *src = "desdmflkj";
 
-	ft_strncat(s1, s2, 2);
-	printf("%s", s1);
-	printf("%s", s1);
-	return(0);
+    ft_strncat(tab, src, 2);
+    printf("%s", tab);
+    
+    return(0);
 }
