@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <unistd.h>
+#include <stdio.h>
 
 void	ft_putchar(char c)
 {
@@ -22,12 +22,11 @@ int		main(int ac, char *av[])
 {
 	int		indexArgsCount;
 
-	indexArgsCount = 0;
+	indexArgsCount = 1;
 
 	while(indexArgsCount < ac)
 	{
-		ft_putstr(av[indexArgsCount]);
-		ft_putchar('\n');
+		ft_putstr(av[ac - indexArgsCount]);
 		indexArgsCount++;
 	}
 	return(0);
