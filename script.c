@@ -48,5 +48,7 @@ int		main(void)
 
 	str = ft_strdup(src);
 	printf("str: %s", str);
+	//free memory safe usage
+	free(str);
 	return(0);
 }
