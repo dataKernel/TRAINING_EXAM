@@ -1,63 +1,52 @@
 #include <stdio.h>
-#include <unistd.h>
-//just in case
-#include <stdbool.h>
+#include <stdlib.h>
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	ft_putstr(char *str)
+int		ft_strlen(char *str)
 {
 	int		i;
 
 	i = 0;
 	while(str[i])
-	{
-		ft_putchar(str[i]);
 		i++;
-	}
+	return(i);
 }
 
-int		str_cmp_by_ascii(char *str1, char *str2)
+char	*ft_strdup(char *src)
 {
+	char	*str;
+	int		sizeStr;
 	int		i;
 
+	sizeStr = ft_strlen(src);
 	i = 0;
-	while((str1[i] || str2[i]) && str1[i] == str2[i])
+	//dyna alloc
+	str = (char *) malloc((sizeof(char) + 1) * sizeStr);
+	//protec
+	if(str == NULL)
+		return(NULL);
+	//filling
+	while(src[i])
+	{
+		str[i] = src[i];
 		i++;
-	return(str1[i] - str2[i]);
+	}
+	str[i] = '\0';
+	return(str);
 }
 
-
-int		main(int ac, char *av[])
+int		main(void)
 {
-	char	*temp;
-	int		i;
-	int		j;
+	char	*src = "lancelot";
+	char	*str = NULL;
 
-	temp = NULL;
-	i = 1;
-	while(i < ac)
-	{
-		j = i + 1;
-		while(j < ac)
-		{
-			if(str_cmp_by_ascii(av[i], av[j]) > 0)
-			{
-				temp = av[i];
-				av[i] = av[j];
-				av[j] = temp; 
-			}
-			j++;
-		}
-		i++;
-	}
+	printf("size char: %lu\n", sizeof(char));
+	printf("size int: %lu\n", sizeof(int));
+	printf("size float: %lu\n", sizeof(float));
+	printf("size long %lu\n", sizeof(long));
+	printf("size double %lu\n", sizeof(double));
 
-	for(int i = 0; i < ac; i++)
-	{
-		printf("args[%i]:%s\n", i, av[i]);
-	}
+
+	str = ft_strdup(src);
+	printf("str: %s", str);
 	return(0);
 }
