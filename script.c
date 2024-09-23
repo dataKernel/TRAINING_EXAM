@@ -1,54 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int		ft_strlen(char *str)
+int		*ft_range(int min, int max)
 {
-	int		i;
+	int		*tab; 
 
-	i = 0;
-	while(str[i])
-		i++;
-	return(i);
-}
-
-char	*ft_strdup(char *src)
-{
-	char	*str;
-	int		sizeStr;
-	int		i;
-
-	sizeStr = ft_strlen(src);
-	i = 0;
-	//dyna alloc
-	str = (char *) malloc((sizeof(char) + 1) * sizeStr);
-	//protec
-	if(str == NULL)
-		return(NULL);
-	//filling
-	while(src[i])
+	tab = malloc(sizeof(int) * (max - min));
+	while(min < max) 
 	{
-		str[i] = src[i];
-		i++;
+		tab[min] = min;
+		min++;
 	}
-	str[i] = '\0';
-	return(str);
+	return(tab);
 }
 
 int		main(void)
 {
-	char	*src = "lancelot";
-	char	*str = NULL;
+	int		*tab;
 
-	printf("size char: %lu\n", sizeof(char));
-	printf("size int: %lu\n", sizeof(int));
-	printf("size float: %lu\n", sizeof(float));
-	printf("size long %lu\n", sizeof(long));
-	printf("size double %lu\n", sizeof(double));
+	tab = ft_range(7, 10);
 
-
-	str = ft_strdup(src);
-	printf("str: %s", str);
-	//free memory safe usage
-	free(str);
+	for(int i = 7; i < 10; i++)
+	{
+		printf("[%i]:%i  \n", i, tab[i]);
+	}
 	return(0);
 }
