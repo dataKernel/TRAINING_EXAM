@@ -1,68 +1,40 @@
-// #include <stdio.h>
-// #include <stdlib.h>
-
-// int		ft_ultimate_range(int *tab, int min, int max)
-// {
-// 	int		*ptr;
-// 	int		i;
-
-// 	ptr = malloc(sizeof(int) * (max - min));
-// 	if(ptr == NULL)
-// 		return(0);
-// 	i = 0;
-// 	while(i < max - 1)
-// 	{
-// 		ptr[i] = min;
-// 		i++;
-// 		min++;
-// 	}
-// 	for(int i = 0; i < max - 1; i++)
-// 		printf("[%i]:%i ", i, ptr[i]);
-// 	return(0);
-// }
-
-// int		main(void)
-// {
-// 	int		tab[5];
-
-// 	ft_ultimate_range(tab, 1, 5);
-
-// 	// for(int i = 0; i < 5; i++)
-// 	// 	printf("[%i]:%i ", i, tab[i]);
-// 	return(0);
-// }
-
 #include <stdio.h>
 #include <stdlib.h>
 
-int		*ft_range(int min, int max)
+int		ft_ultimate_range(int **range, int min, int max)
 {
-	int		*tab;
-	int		i; 
+	int		sizeArray;
+	int		*ptr;
+	int		i;
 
-	tab = malloc(sizeof(int) * (max - min));
-	//malloc protec
-	if(tab == NULL)
-		return(NULL);
-	i = 0;
-	while(i < max) 
+	sizeArray = max - min;
+	ptr = malloc(sizeof(int) * sizeArray);
+	if(ptr == NULL)
+		return(0);
+	else if(min >= max)
 	{
-		tab[i] = min;
-		min++;
-		i++;
+		range = NULL;
+		return(0);
 	}
-	return(tab);
+	i = 0;
+	while(i < sizeArray)
+	{
+		ptr[i] = min;
+		i++;
+		min++;
+	}
+
+	*range = ptr;
+	return(sizeArray);
 }
 
 int		main(void)
 {
 	int		*tab;
 
-	tab = ft_range(7, 10);
+	ft_ultimate_range(&tab, 1, 5);
 
-	for(int i = 0; i < 3; i++)
-	{
-		printf("[%i]:%i  \n", i, tab[i]);
-	}
+	for(int i = 0; i < 4; i++)
+		printf("[%i]:%i____", i, tab[i]);
 	return(0);
 }
