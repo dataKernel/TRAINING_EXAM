@@ -1,40 +1,55 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int		ft_ultimate_range(int **range, int min, int max)
+#define	MIN		1
+#define MAX		5
+
+int		ft_strlen(char *str)
 {
-	int		sizeArray;
-	int		*ptr;
 	int		i;
 
-	sizeArray = max - min;
-	ptr = malloc(sizeof(int) * sizeArray);
+	i = 0;
+	while(str[i])
+		i++;
+	return(i);
+}
+
+int		*ft_range(int min, int max)
+{
+	int		*ptr;
+	int		sizeArray;
+	int		i;
+
+	if(min >= max)
+		return(NULL);
+	ptr = malloc(sizeof(int) * (max - min));
 	if(ptr == NULL)
-		return(0);
-	else if(min >= max)
-	{
-		range = NULL;
-		return(0);
-	}
+		return(NULL);
+	sizeArray = max - min;
 	i = 0;
 	while(i < sizeArray)
 	{
 		ptr[i] = min;
-		i++;
 		min++;
+		i++;
 	}
-
-	*range = ptr;
-	return(sizeArray);
+	return(ptr);
 }
 
 int		main(void)
 {
-	int		*tab;
+	int		*ptrlocal;
 
-	ft_ultimate_range(&tab, 1, 5);
-
-	for(int i = 0; i < 4; i++)
-		printf("[%i]:%i____", i, tab[i]);
+	ptrlocal = ft_range(MIN, MAX);
+	if(!ptrlocal)
+	{
+		printf("ptr local was NULL");
+		return(-1);
+	}
+	for(int i = 0; i < MAX - MIN; i++)
+	{
+		printf("ptrlocal[%i]:%i\n", i, ptrlocal[i]);
+	}
+	free(ptrlocal);
 	return(0);
 }
