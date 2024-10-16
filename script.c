@@ -1,39 +1,70 @@
 #include <stdio.h>
 #include <stdlib.h> //malloc library
 
-
 int		ft_strlen(char *str)
 {
-	int		i;
+	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 		i++;
-	return(i);
+	return (i);
 }
 
-char	*ft_concat(int argc, char **argv)
+int		calc_full_strSize_from_argv(int argc, char **argv)
 {
-	char	*str;
-	int		countArgs;
-	int		countCharArgv;
+	int	countArgs;
+	int	countCharArgv;
 
-	countCharArgv = 0;
 	countArgs = 0;
-	while(countArgs < argc)
+	countCharArgv = 0;
+	while (countArgs < argc)
 	{
 		countCharArgv += ft_strlen(argv[countArgs]);
 		countArgs++;
 	}
-	//checking size full str
-	printf("sizeStr: %i\n", countCharArgv);
-	return(str);
+	return (countCharArgv);
+}
+
+char	*ft_concat(int argc, char **argv)
+{
+	char	*strArray;
+	int		countCharArgv;
+	int		countArgc;
+	int		countArgv;
+	int		i;
+
+	countArgc = 0;
+	// calc the array size and gen malloc allocation
+	countCharArgv = calc_full_strSize_from_argv(argc, argv);
+	strArray = malloc(sizeof(char) * (countCharArgv + argc + 1));
+	// filling the array
+	i = 0;
+	while (countArgc < argc)
+	{
+		countArgv = 0;
+		while (argv[countArgc][countArgv])
+		{
+			strArray[i] = argv[countArgc][countArgv];
+			i++;
+			countArgv++;
+		}
+		if (countArgc < argc - 1)
+		{
+			strArray[i] = '\n';
+			i++;
+		}
+		countArgc++;
+	}
+	strArray[i] = '\0';
+	return (strArray);
 }
 
 int		main(int argc, char **argv)
 {
-	char	*str;
+	char *str;
 
 	str = ft_concat(argc, argv);
-	return(0);
+	printf("res: %s", str);
+	return (0);
 }
