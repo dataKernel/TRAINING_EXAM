@@ -1,17 +1,25 @@
 #include <stdio.h>
+#include <stdlib.h> //malloc library
 
-#define MIN		0
-#define MAX		5
 
-int		ft_ultimate_range(int **range, int min, int max)
+char	*ft_concat(int argc, char **argv)
 {
-	return(0);
+	char	*str;
+
+	printf("check argc: %i\n", argc);
+	printf("========================\n");
+	printf("check argv: %s\n", argv[0]);
+	return(str);
 }
 
-int		main(void)
+int		main(int argc, char **argv)
 {
-	int		*tabInt;
+	char	*str;
 
-	tabInt = ft_ultimate_range(tabInt, MIN, MAX);
+	str = "data";
+
+	printf("(pre): %s", str);
+	str = ft_concat(argc, argv);
+	printf("(post): %s", str);
 	return(0);
 }
