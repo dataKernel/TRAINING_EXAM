@@ -1,70 +1,65 @@
 #include <stdio.h>
-#include <stdlib.h> //malloc library
+#include <stdlib.h>
 
-int		ft_strlen(char *str)
+int     ft_strlen(char *str)
 {
-	int	i;
+    int     i;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+    i = 0;
+    while(str[i])
+        i++;
+    return(i);
 }
 
-int		calc_full_strSize_from_argv(int argc, char **argv)
+void    ft_copy_str(char *src, char *dst)
 {
-	int	countArgs;
-	int	countCharArgv;
+    int     i;
 
-	countArgs = 0;
-	countCharArgv = 0;
-	while (countArgs < argc)
-	{
-		countCharArgv += ft_strlen(argv[countArgs]);
-		countArgs++;
-	}
-	return (countCharArgv);
+    i = 0;
+    while(src[i])
+    {
+        dst[i] = src[i];
+        i++;
+    }
+    dst[i] = '\n'; // on ajoute un retour chariot en fin de copie pr directement l'avoir pr malloc
 }
 
-char	*ft_concat(int argc, char **argv)
+char    *ft_concat_params(int argc, char **argv)
 {
-	char	*strArray;
-	int		countCharArgv;
-	int		countArgc;
-	int		countArgv;
-	int		i;
+    char    *tabMalloc;
+    int     sizeTab;
+    int     indexArgc;
+    int     indexArgv;
 
-	countArgc = 0;
-	// calc the array size and gen malloc allocation
-	countCharArgv = calc_full_strSize_from_argv(argc, argv);
-	strArray = malloc(sizeof(char) * (countCharArgv + argc + 1));
-	// filling the array
-	i = 0;
-	while (countArgc < argc)
-	{
-		countArgv = 0;
-		while (argv[countArgc][countArgv])
-		{
-			strArray[i] = argv[countArgc][countArgv];
-			i++;
-			countArgv++;
-		}
-		if (countArgc < argc - 1)
-		{
-			strArray[i] = '\n';
-			i++;
-		}
-		countArgc++;
-	}
-	strArray[i] = '\0';
-	return (strArray);
+    tabMalloc = NULL;
+    sizeTab = 0;   
+    indexArgc = 1;
+    indexArgv = 0;
+    while(indexArgc < argc)
+    {
+        sizeTab += ft_strlen(argv[indexArgc]);
+        indexArgc++;
+    }
+    printf("checking de la size: %i", sizeTab + argc-1);
+    tabMalloc = malloc(sizeof(char) * (sizeTab + argc - 1));
+    indexArgc = 1;
+    indexArgv = 0;
+    while(indexArgc < argc)
+    {
+        ft_copy_str(argv[indexArgc], tabMalloc + indexArgv);
+        indexArgv += ft_strlen(argv[indexArgc]) + 1;
+        indexArgc++;
+    }
+    tabMalloc[indexArgv] = '\0';
+    return(tabMalloc);
 }
 
-int		main(int argc, char **argv)
+int     main(int argc, char **argv)
 {
-	char *str;
+    char    *tab = ft_concat_params(argc, argv);
 
-	str = ft_concat(argc, argv);
-	printf("res: %s", str);
-	return (0);
+
+    printf("malloc assignation: %s", tab);
+    free(tab);
+    return(0);
 }
