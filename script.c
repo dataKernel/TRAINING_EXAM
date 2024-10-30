@@ -1,74 +1,30 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <unistd.h>
 
-int	ft_strlen(char *str)
+#define TOP		'^'
+#define BOT		'-'
+#define EDGE 	'|'
+
+void	ft_putchar(char c)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	write(1, &c, 1);
 }
-void	ft_copy_str(char *src, char *dst)
-{
-	int	i;
 
-	i = 0;
-	if(!src || !dst)
-		return;
-	while (src[i])
+void	draw_square(int height)
+{
+	//we wanna draw the top first
+	for(int i = 0; i < height; i++)
+		ft_putchar(TOP);
+	for(int i = 0; i < height; i++)
 	{
-		dst[i] = src[i];
-		i++;
+		if(i == 0 || i == (height  - 1))
+			ft_putchar(EDGE);
 	}
 }
 
-char	*ft_concat_params(int argc, char **argv)
+int		main(int argc, char *argv[])
 {
-	char	*tabMalloc;
-	int		sizeTab;
-	int		indexArgc;
-	int		indexArgv;
-
-	tabMalloc = NULL;
-	sizeTab = 0;
-	indexArgc = 1;
-	indexArgv = 0;
-	// calcul du tab malloc
-	while (indexArgc < argc)
-	{
-		sizeTab += ft_strlen(argv[indexArgc]);
-		indexArgc++;
-	}
-	tabMalloc = malloc(sizeof(char) * (sizeTab + argc - 1));
-	if (!tabMalloc) // protect malloc
-		return (NULL);
-	indexArgc = 1;
-	indexArgv = 0;
-	while (indexArgc < argc)
-	{
-		ft_copy_str(argv[indexArgc], tabMalloc + indexArgv);
-		indexArgv += ft_strlen(argv[indexArgc]);
-		if (indexArgc < argc - 1)
-		{
-			tabMalloc[indexArgv] = '\n';
-			indexArgv++;
-		}
-		indexArgc++;
-	}
-	tabMalloc[indexArgv] = '\0';
-	return (tabMalloc);
+	
+	return(0);
 }
 
-int	main(int argc, char **argv)
-{
-	char *tab = ft_concat_params(argc, argv);
-
-	if (!tab)
-		return (-1); // erreur d'allocation
-	//checking output
-	printf("malloc assignation: \n%s", tab);
-	free(tab);
-	return (0);
-}
