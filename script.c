@@ -1,30 +1,45 @@
 #include <stdio.h>
-#include <unistd.h>
+#include <stdlib.h>
 
-#define TOP		'^'
-#define BOT		'-'
-#define EDGE 	'|'
-
-void	ft_putchar(char c)
+int	ft_strlen(char *str)
 {
-	write(1, &c, 1);
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
-void	draw_square(int height)
+char	*ft_strdup(char *str)
 {
-	//we wanna draw the top first
-	for(int i = 0; i < height; i++)
-		ft_putchar(TOP);
-	for(int i = 0; i < height; i++)
+	char	*mallocStr;
+	int		i;
+
+	i = 0;
+	mallocStr = malloc(sizeof(char) * (ft_strlen(str) + 1));
+	if (!mallocStr)
+		return (NULL);
+	while (str[i])
 	{
-		if(i == 0 || i == (height  - 1))
-			ft_putchar(EDGE);
+		mallocStr[i] = str[i];
+		i++;
 	}
+	mallocStr[i] = '\0';
+	return (NULL);
 }
 
-int		main(int argc, char *argv[])
+int	main(void)
 {
-	
-	return(0);
-}
+	char	*str = NULL;
 
+	printf("pre_str: %s", str);
+	str = ft_strdup("lancelot test");
+	if(!str)
+	{
+		printf("fail allocation");
+		return(-1);
+	}
+	printf("post str: %s", str);
+	return (0);
+}
