@@ -1,45 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int	ft_strlen(char *str)
+int		ft_strlen(char *str)
 {
-	int	i;
+	int		i = 0;
 
-	i = 0;
-	while (str[i])
+	while(str[i])
 		i++;
-	return (i);
+	return(i);		
 }
 
 char	*ft_strdup(char *str)
 {
-	char	*mallocStr;
-	int		i;
+	int		i = 0;
 
-	i = 0;
-	mallocStr = malloc(sizeof(char) * (ft_strlen(str) + 1));
-	if (!mallocStr)
-		return (NULL);
-	while (str[i])
+	while(str[i])
 	{
-		mallocStr[i] = str[i];
+		str[i] = 'a';
 		i++;
 	}
-	mallocStr[i] = '\0';
-	return (NULL);
+	return(str);
 }
 
-int	main(void)
+int		main(void)
 {
-	char	*str = NULL;
+	char	str[] = "000000000";
+	char	*strcp;
+	strcp = ft_strdup(str);
 
-	printf("pre_str: %s", str);
-	str = ft_strdup("lancelot test");
-	if(!str)
-	{
-		printf("fail allocation");
-		return(-1);
-	}
-	printf("post str: %s", str);
-	return (0);
+	printf("%s", strcp);
+	return(0);
 }
