@@ -1,33 +1,34 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int		ft_strlen(char *str)
+//1, 2, 3, 4
+int		*ft_range(int min, int max)
 {
+	int		tabMalloc;
 	int		i = 0;
 
-	while(str[i])
-		i++;
-	return(i);		
-}
-
-char	*ft_strdup(char *str)
-{
-	int		i = 0;
-
-	while(str[i])
+	tabMalloc = malloc(sizeof(int) * (max - min));
+	if(!tabMalloc)
+		return(NULL);
+	while(i < max - 1)
 	{
-		str[i] = 'a';
+		tabMalloc[i] = min;
+		min++;
 		i++;
 	}
-	return(str);
+	return(tabMalloc);
 }
 
 int		main(void)
 {
-	char	str[] = "000000000";
-	char	*strcp;
-	strcp = ft_strdup(str);
+	int		*tab = ft_range(1, 4);
 
-	printf("%s", strcp);
+	if(!tab)
+	{
+		printf("fail allocation");
+		return(-1);
+	}
+	for(int i = 0; i < 3; i++)
+		printf("val[%i]:%i", i, tab[i]);
 	return(0);
 }
