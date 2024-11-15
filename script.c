@@ -1,34 +1,42 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//1, 2, 3, 4
-int		*ft_range(int min, int max)
-{
-	int		tabMalloc;
-	int		i = 0;
+#define MIN				3
+#define MAX				4
+#define SIZE_ARRAY		MAX-MIN
+//1 a 3 (4 exclus)
 
-	tabMalloc = malloc(sizeof(int) * (max - min));
-	if(!tabMalloc)
-		return(NULL);
-	while(i < max - 1)
+int		ft_u_range (int **range, int min, int max)
+{
+	int		i = 0;
+	
+	if(min >= max)
+		return(-1);
+	range[0] = malloc(sizeof(int) * (SIZE_ARRAY));
+	if(!*range)
+		return(-1);
+	while(i < SIZE_ARRAY)
 	{
-		tabMalloc[i] = min;
+		range[0][i] = min;
 		min++;
 		i++;
 	}
-	return(tabMalloc);
+	return(SIZE_ARRAY);
 }
 
 int		main(void)
 {
-	int		*tab = ft_range(1, 4);
+	int		*tab;
+	int		sizeArray;
 
-	if(!tab)
+	sizeArray = ft_u_range(&tab, MIN, MAX);
+	if(sizeArray == -1)
 	{
-		printf("fail allocation");
-		return(-1);
+		printf("fail in allocation or size MIN/MAX");
+		return(0);
 	}
-	for(int i = 0; i < 3; i++)
-		printf("val[%i]:%i", i, tab[i]);
+	//checking post
+	for(int i = 0; i < sizeArray; i++)
+		printf("(post):tab[%i]:%i\n", i, tab[i]);
 	return(0);
 }
