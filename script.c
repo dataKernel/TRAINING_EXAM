@@ -1,45 +1,64 @@
+#include <stdio.h>
 #include <stdlib.h>
-
-#define MIN				3
-#define MAX				4
-#define SIZE_ARRAY		MAX-MIN
-
-//1 a 3 (4 exclus)
-int		ft_u_range (int **range, int min, int max)
+//--------------protos---------------
+char	*ft_concat(int, char *[]);
+//-----------------------------------
+int		ft_strlen(char *str)
 {
-	*globals elems
 	int		i = 0;
+
+	while(str[i])
+		i++;
+	return(i);
+}
+
+char	*ft_concat(int ac, char *av[])
+{
+	char	*mallocStr = NULL;
+	int		sizeStr = 0;
+	int		indexMallocStr = 0;
+	int		i = 1;//index ac, skipping the first one
+	//(executable program)
+	int		j;//index av
 	
-	if(min >= max)
+	//calc full size str
+	while(i < ac)
 	{
-		range = NULL;
-		return(0);
-	}
-	range[0] = malloc(sizeof(int) * (SIZE_ARRAY));
-	if(!*range)
-		return(0);
-	while(i < SIZE_ARRAY)
-	{
-		range[0][i] = min;
-		min++;
+		sizeStr += ft_strlen(av[i]);
 		i++;
 	}
-	return(SIZE_ARRAY);
+	//we add the \n and NUL terminator
+	sizeStr += ac - 2 + 1; //could resume with ac - 1
+	mallocStr = malloc(sizeof(char) * sizeStr);
+	if(!mallocStr)
+	{
+		printf("fail allocation");
+		return(NULL);
+	}
+	//filling the dynamical alloc
+	i = 1;
+	while(i < ac)
+	{
+		j = 0;
+		while(av[i][j])
+		{
+			mallocStr[indexMallocStr] = av[i][j];
+			indexMallocStr++;
+			j++;
+		}
+		if(i != ac - 1)
+			mallocStr[indexMallocStr++] = '\n';
+		i++;
+	}
+	mallocStr[indexMallocStr++] = '\0'; 
+	return(mallocStr);
 }
 
-int		main(void)
+int		main(int argc, char *argv[])
 {
-	int		*tab;
-	int		sizeArray;
+	char	*str = ft_concat(argc, argv);
 
-	sizeArray = ft_u_range(&tab, MIN, MAX);
-	if(sizeArray == 0)
-	{
-		printf("fail in allocation or size MIN/MAX");
-		return(0);
-	}
-	//checking post
-	for(int i = 0; i < sizeArray; i++)
-		printf("(post):tab[%i]:%i\n", i, tab[i]);
+	printf("%s", str);
 	return(0);
 }
+
