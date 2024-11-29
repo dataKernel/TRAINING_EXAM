@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 int		ft_strlen(char *str)
 {
@@ -7,21 +8,23 @@ int		ft_strlen(char *str)
 
 	while(str[i])
 		i++;
-
+	
 	return(i);
 }
 
-void	ft_strcpy(char *src, char *dst)
+int		ft_strcpy(char *src, char dst[], bool check)
 {
-	if(src == NULL)
-	{
-		printf("fail copy... exit");
-		return ;
-	}
-	for(int i = 0; src[i]; i++)
+	int		i = 0;
+
+	if(!src || !dst)
+		return(-1);
+	for(; src[i]; i++)
 	{
 		dst[i] = src[i];
 	}
+	if(check)
+		dst[i] = '\0';
+	return(i);
 }
 
 int		checking_size_str_argv(int argsCount, char *argvTab[])
@@ -45,6 +48,7 @@ char	*ft_concat_params(int argc, char *argv[])
 	int		sizeMalloc = checking_size_str_argv(argc, argv);
 	int		i = 1; //index de l'argv sur le 1er argument (on skip le nom du prog)
 	int		indexMallocStr = 0;
+	int		sizeCpy = 0;
 
 	mallocStr = malloc(sizeof(char) * sizeMalloc);
 	//on check la gen dynamique de malloc
@@ -52,20 +56,33 @@ char	*ft_concat_params(int argc, char *argv[])
 		return(NULL);
 	while(i < argc)
 	{
-		ft_strcpy(argv[i], mallocStr + indexMallocStr);
-		indexMallocStr += ft_strlen(argv[i]);
+		//on copie et on ajouter la taille de la chaîne parcourue a l'index du malloc
+		sizeCpy = ft_strcpy(argv[i], mallocStr + indexMallocStr, false); // boolean pr décider si on veut NUL terminator
+		if(sizeCpy < 0)
+		{
+			free(mallocStr);
+			return(NULL);
+		}
+		indexMallocStr += sizeCpy;
 		if(i < argc - 1)
+		{
 			mallocStr[indexMallocStr] = '\n';
+			indexMallocStr++;
+		}
 		i++;
 	}
+	mallocStr[indexMallocStr] = '\0';
 	return(mallocStr);
 }
 
 int		main(int argc, char *argv[])
 {
-	char	*tst;
-	tst = ft_concat_params(argc, argv);
+	char	*tst = NULL;
 	
+	tst = ft_concat_params(argc, argv);
+	if(!tst)
+		printf("issue allocation");
 	printf("%s", tst);
+
 	return(0);
 }
