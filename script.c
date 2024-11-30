@@ -12,6 +12,8 @@ int		ft_strlen(char *str)
 	return(i);
 }
 
+
+// juste un booléean pour vérifier qu'on veuille ajouter un NUL terminator
 int		ft_strcpy(char *src, char dst[], bool check)
 {
 	int		i = 0;
