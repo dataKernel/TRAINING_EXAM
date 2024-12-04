@@ -1,90 +1,59 @@
+/*
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+You can return the answer in any order.
+
+ 
+
+Example 1:
+
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+Example 2:
+
+Input: nums = [3,2,4], target = 6
+Output: [1,2]
+Example 3:
+
+Input: nums = [3,3], target = 6
+Output: [0,1]
+ 
+
+Constraints:
+
+2 <= nums.length <= 104
+-109 <= nums[i] <= 109
+-109 <= target <= 109
+Only one valid answer exists.
+ 
+
+Follow-up: Can you come up with an algorithm that is less than O(n2) time complexity?
+*/
+
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+
 #include <stdio.h>
-#include <stdlib.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
-int		ft_strlen(char *str)
+void	*checker(int *nums, int numSize, int target)
 {
-	int		i = 0;
 
-	while(str[i])
-		i++;
-	
-	return(i);
 }
 
-
-// juste un booléean pour vérifier qu'on veuille ajouter un NUL terminator
-int		ft_strcpy(char *src, char dst[], bool check)
+int* 	twoSum(int* nums, int numsSize, int target, int* returnSize)
 {
-	int		i = 0;
-
-	if(!src || !dst)
-		return(-1);
-	for(; src[i]; i++)
-	{
-		dst[i] = src[i];
-	}
-	if(check)
-		dst[i] = '\0';
-	return(i);
+	//checker
 }
 
-int		checking_size_str_argv(int argsCount, char *argvTab[])
+int		main(void)
 {
-	int		i = 1;//index argc
-	int		res = 0;
-	
-	while(i < argsCount)
-	{
-		res += ft_strlen(argvTab[i]);
-		i++;
-	}
-	//ajout des espaces et du NUL terminator
-	res += (argsCount - 2) + 1;	
-	return(res);
-}
-
-char	*ft_concat_params(int argc, char *argv[])
-{
-	char	*mallocStr = NULL;
-	int		sizeMalloc = checking_size_str_argv(argc, argv);
-	int		i = 1; //index de l'argv sur le 1er argument (on skip le nom du prog)
-	int		indexMallocStr = 0;
-	int		sizeCpy = 0;
-
-	mallocStr = malloc(sizeof(char) * sizeMalloc);
-	//on check la gen dynamique de malloc
-	if(!mallocStr)
-		return(NULL);
-	while(i < argc)
-	{
-		//on copie et on ajouter la taille de la chaîne parcourue a l'index du malloc
-		sizeCpy = ft_strcpy(argv[i], mallocStr + indexMallocStr, false); // boolean pr décider si on veut NUL terminator
-		if(sizeCpy < 0)
-		{
-			free(mallocStr);
-			return(NULL);
-		}
-		indexMallocStr += sizeCpy;
-		if(i < argc - 1)
-		{
-			mallocStr[indexMallocStr] = '\n';
-			indexMallocStr++;
-		}
-		i++;
-	}
-	mallocStr[indexMallocStr] = '\0';
-	return(mallocStr);
-}
-
-int		main(int argc, char *argv[])
-{
-	char	*tst = NULL;
-	
-	tst = ft_concat_params(argc, argv);
-	if(!tst)
-		printf("issue allocation");
-	printf("%s", tst);
-
 	return(0);
 }
+
+
