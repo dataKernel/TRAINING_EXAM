@@ -1,59 +1,52 @@
-/*
-Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
-
-You may assume that each input would have exactly one solution, and you may not use the same element twice.
-
-You can return the answer in any order.
-
- 
-
-Example 1:
-
-Input: nums = [2,7,11,15], target = 9
-Output: [0,1]
-Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
-Example 2:
-
-Input: nums = [3,2,4], target = 6
-Output: [1,2]
-Example 3:
-
-Input: nums = [3,3], target = 6
-Output: [0,1]
- 
-
-Constraints:
-
-2 <= nums.length <= 104
--109 <= nums[i] <= 109
--109 <= target <= 109
-Only one valid answer exists.
- 
-
-Follow-up: Can you come up with an algorithm that is less than O(n2) time complexity?
-*/
-
-/**
- * Note: The returned array must be malloced, assume caller calls free().
- */
-
 #include <stdio.h>
-#include <stdbool.h>
 #include <stdlib.h>
 
-void	*checker(int *nums, int numSize, int target)
-{
+#define STR_TEST    "lancelot est content"
 
+int     ft_strlen(char *str)
+{
+    int     i = 0;
+    
+    while(str[i])
+        i++;
+    return(i);
 }
 
-int* 	twoSum(int* nums, int numsSize, int target, int* returnSize)
+int     count_words(char *str)
 {
-	//checker
+    int     countWords = 0;
+    for(int i = 0; str[i]; i++)
+    {
+        if(str[i] == ' ' || str[i] == '\n' || str[i] == '\t')
+             countWords++;
+    }
+    return(countWords + 1);
 }
 
-int		main(void)
+char    **ft_split(char *str)
 {
-	return(0);
+    char    **tabStr;
+    int     i = 0; //index de tab de str
+	int		j; //index de str
+    
+	tabStr = malloc(sizeof(char *) * (count_words(str) + 1));
+    if(!tabStr)
+        return(NULL);
+	while(i < count_words(str))
+	{
+		tabStr[i] = NULL;
+		i++;
+	}
+	tabStr[i] = NULL;
+    return(tabStr);
 }
 
-
+int     main(void)
+{
+    char    **tabStr = ft_split(STR_TEST);
+    
+    printf("words_count:%i\n\n----------------\n", count_words(STR_TEST));
+    for(int i = 0; i < 4; i++)
+        printf("[%i]:%s\n", i, tabStr[i]);
+    return(0);
+}
