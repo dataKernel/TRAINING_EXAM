@@ -1,52 +1,65 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define STR_TEST    "lancelot est content"
+#define STR_TEST    "truc bidule machin "
 
-int     ft_strlen(char *str)
+//on check la size de la string jusqu'au ws character
+int     ft_strlen_by_ws(char *str)
 {
     int     i = 0;
     
-    while(str[i])
-        i++;
+    while(str[i] && str[i] != ' ' && str[i] != '\n' && str[i] != '\t')
+		i++;
     return(i);
 }
 
 int     count_words(char *str)
 {
     int     countWords = 0;
-    for(int i = 0; str[i]; i++)
-    {
-        if(str[i] == ' ' || str[i] == '\n' || str[i] == '\t')
+    int		i = 0;
+   	
+	if(!str)
+		return(0);
+
+	while(str[i])
+	{
+        if(str[i] == ' ' && str[i + 1] != ' ' && str[i + 1] != '\0')
              countWords++;
+		i++;
     }
-    return(countWords + 1);
+	if(i > 0)
+		return(countWords + 1);
+    return(0);
 }
 
 char    **ft_split(char *str)
 {
-    char    **tabStr;
-    int     i = 0; //index de tab de str
+    char    **mallocTabStr;
+    char	*mallocStr;
+	int     i = 0; //index de tab de str
 	int		j; //index de str
     
-	tabStr = malloc(sizeof(char *) * (count_words(str) + 1));
-    if(!tabStr)
+	//si il n'y a pas de mots
+	if(count_words(str) == 0)
+		return(NULL);
+	mallocTabStr = malloc(sizeof(char *) * (count_words(str) + 1));
+    if(!mallocTabStr)
         return(NULL);
 	while(i < count_words(str))
 	{
-		tabStr[i] = NULL;
+		//... algo debut
 		i++;
 	}
-	tabStr[i] = NULL;
-    return(tabStr);
+	//dernier element du tabStr
+	mallocTabStr[i] = NULL;
+    return(mallocTabStr);
 }
 
 int     main(void)
 {
-    char    **tabStr = ft_split(STR_TEST);
-    
-    printf("words_count:%i\n\n----------------\n", count_words(STR_TEST));
-    for(int i = 0; i < 4; i++)
-        printf("[%i]:%s\n", i, tabStr[i]);
+    char    **tabStr = NULL;
+   	
+
+	printf("value:%i", count_words(STR_TEST));
     return(0);
 }
