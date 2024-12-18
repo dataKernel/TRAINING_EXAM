@@ -56,13 +56,14 @@ char    **ft_split(char *str)
 	{
 		indexMallocStr = 0;
 		mallocTabStr[indexMallocTabStr] = malloc(sizeof(char) * (ft_strlen_by_ws(str + i) + 1));
-		printf("strlen + i:%i\n", ft_strlen_by_ws(str + i));
+		printf("size info malloc: %i\n", ft_strlen_by_ws(str + i) + 1);
 		while (indexMallocStr < ft_strlen_by_ws(str + i))
 		{
 			mallocTabStr[indexMallocTabStr][indexMallocStr] = str[i];
 			indexMallocStr++;
 			i++;
 		}
+		indexMallocStr++;
 		mallocTabStr[indexMallocTabStr][indexMallocStr] = '\0';
 		i++;	
 		indexMallocTabStr++;
@@ -75,8 +76,8 @@ char    **ft_split(char *str)
 int     main(void)
 {
     char    **tabStr = ft_split(STR_TEST);
-
-	printf("%s", tabStr[0]);
 	
+	for(int i = 0; i < count_words(STR_TEST) + 1; i++)
+		printf("[%i]:%s", i, tabStr[i]);
     return(0);
 }
