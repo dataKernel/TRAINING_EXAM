@@ -10,7 +10,6 @@ struct      s_stock_params
     int     _tailleParam;
     char    *_str;
     char    *_cpyStr;
-    char    **_tab;
 };
 //--------------------------------------------------------------
 //  DEF PROTOS
@@ -36,7 +35,7 @@ int     ft_strlen(char *str)
 
 void    ft_strcpy(char *src, char *dst)
 {
-    
+
     int     i;
 
     if(!src || !dst)
@@ -44,30 +43,45 @@ void    ft_strcpy(char *src, char *dst)
     i = 0;
     while(src[i])
     {
-
+        dst[i] = src[i];
         i++;       
     }
-
 }
 
 struct s_stock_params       *ft_param_vers_tab(int ac, char *av[])
 {
-    struct s_stock_params       *tab;
+    struct s_stock_params    *tab;
+    
+    char    *strCpy;
 
     tab = malloc(sizeof(struct s_stock_params) * (ac + 1));
     for(int i = 0; i < ac + 1; i++)
     {
+        //on alloue la copie de la string
+        strCpy = malloc(sizeof(char) * (ft_strlen(av[i]) + 1));
+        ft_strcpy(av[i], strCpy);
         tab[i]._tailleParam = ft_strlen(av[i]);
         tab[i]._str = av[i];
+        tab[i]._cpyStr = strCpy;
     }
     return(tab);
 }
 
 int     main(int ac, char *av[])
 {
-    char    *str = "";
+    struct s_stock_params    *tabStructParams;
 
-    printf("size:%i", ft_strlen(NULL));
-
+    tabStructParams = ft_param_vers_tab(ac, av);
+    //check affichage infos
+    printf("av:%s ", av[0]);
+    printf("av ref:%p\n", av);
+    printf("-----------------\n");
+    printf("tailleParam:%i\n", tabStructParams[0]._tailleParam);
+    printf("-----------------\n");
+    printf("str:%s", tabStructParams[0]._str);
+    printf("str ref:%p\n", tabStructParams[0]._str);
+    printf("-----------------\n");
+    printf("cpyStr:%s ", tabStructParams[0]._cpyStr);
+    printf("cpyStr ref: %p\n", tabStructParams[0]._cpyStr);
     return(0);
 }
