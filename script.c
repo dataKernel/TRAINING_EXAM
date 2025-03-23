@@ -1,48 +1,72 @@
 #include <stdio.h>
-#include "ft_header.h"
+#include <stdlib.h>
+#include <stdbool.h>
 
+//--------------------------------------------------------------
+//  STRUCT DEF
+//--------------------------------------------------------------
+struct      s_stock_params
+{
+    int     _tailleParam;
+    char    *_str;
+    char    *_cpyStr;
+    char    **_tab;
+};
+//--------------------------------------------------------------
+//  DEF PROTOS
+//--------------------------------------------------------------
+struct  s_stock_params      *ft_param_vers_tab(int, char*[]);
+
+void    ft_strcpy(char*, char*);
+int     ft_strlen(char*);    
+//--------------------------------------------------------------
+//  DEF FUNCS
+//--------------------------------------------------------------
 int     ft_strlen(char *str)
 {
-    int     i = 0;
+    int     i;
 
+    if(!str)
+        return(0);
+    i = 0;
     while(str[i])
         i++;
     return(i);
 }
 
-int     count_words(char *str, char del) 
+void    ft_strcpy(char *src, char *dst)
 {
-    int     count = 0;
-    if(!str || ft_strlen(str) < 0)
-        return(-1);
-    for (int i = 0; str[i]; i++)
+    int     i;
+
+    if(!src || !dst)
+        return;
+    i = 0;
+    while(src[i])
     {
-        if(str[i] == del && str[i - 1] != del && i != 0 && i != ft_strlen(str) - 1)
-            count++;
+
+        i++;       
     }
-    return(count + 1);
+
 }
 
-char    **ft_split_whitespaces(char *str, char c)
+struct s_stock_params       *ft_param_vers_tab(int ac, char *av[])
 {
-    char    **tabStr = NULL;
-    char    *str = NULL;
+    struct s_stock_params       *tab;
 
-    if(!str || ft_strlen(str) == 0)
-        return(NULL);
-    tabStr = malloc(sizeof(char *) * (count_words(str, c) + 1));
-    if(!tabStr)
-        return(NULL);
-    
-    return(tabStr);
+    tab = malloc(sizeof(struct s_stock_params) * (ac + 1));
+    for(int i = 0; i < ac + 1; i++)
+    {
+        tab[i]._tailleParam = ft_strlen(av[i]);
+        tab[i]._str = av[i];
+    }
+    return(tab);
 }
 
-int     main(int ac, char **av)
+int     main(int ac, char *av[])
 {
-    char    **tab = ft_split_whitespaces("ceci est un test", SP);
-    
-    if(!tab)
-        printf("erreur alloc");
-    
+    char    *str = "";
+
+    printf("size:%i", ft_strlen(NULL));
+
     return(0);
 }
