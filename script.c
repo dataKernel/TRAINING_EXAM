@@ -83,5 +83,9 @@ int     main(int ac, char *av[])
     printf("-----------------\n");
     printf("cpyStr:%s ", tabStructParams[0]._cpyStr);
     printf("cpyStr ref: %p\n", tabStructParams[0]._cpyStr);
+    if(av[0] == tabStructParams[0]._str)
+        printf("same");
+    else
+        printf("not same");
     return(0);
 }
