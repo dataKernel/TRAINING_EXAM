@@ -36,6 +36,7 @@ int     ft_strlen(char *str)
 
 void    ft_strcpy(char *src, char *dst)
 {
+    
     int     i;
 
     if(!src || !dst)
