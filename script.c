@@ -74,7 +74,7 @@ int     main(int ac, char *av[])
     tabStructParams = ft_param_vers_tab(ac, av);
     //check affichage infos
     printf("av:%s ", av[0]);
-    printf("av ref:%p\n", av);
+    printf("av ref:%p\n", av[0]);
     printf("-----------------\n");
     printf("tailleParam:%i\n", tabStructParams[0]._tailleParam);
     printf("-----------------\n");
