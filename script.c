@@ -1,91 +1,38 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
+#include <unistd.h>
 
-//--------------------------------------------------------------
-//  STRUCT DEF
-//--------------------------------------------------------------
-struct      s_stock_params
+#define AM      "A.M."
+#define PM      "P.M."
+
+void    ft_aura_lieu(int);
+
+void    ft_aura_lieu(int heure)
 {
-    int     _tailleParam;
-    char    *_str;
-    char    *_cpyStr;
-};
-//--------------------------------------------------------------
-//  DEF PROTOS
-//--------------------------------------------------------------
-struct  s_stock_params      *ft_param_vers_tab(int, char*[]);
-
-void    ft_strcpy(char*, char*);
-int     ft_strlen(char*);    
-//--------------------------------------------------------------
-//  DEF FUNCS
-//--------------------------------------------------------------
-int     ft_strlen(char *str)
-{
-    int     i;
-
-    if(!str)
-        return(0);
-    i = 0;
-    while(str[i])
-        i++;
-    return(i);
-}
-
-void    ft_strcpy(char *src, char *dst)
-{
-
-    int     i;
-
-    if(!src || !dst)
+    //check param
+    if(heure < 0 || heure > 23)
+    {
+        printf("Erreur de param..");
         return;
-    i = 0;
-    while(src[i])
+    }
+    if(heure == 11)
+        printf("%i:00 %s -> %i:00 %s\n", heure, AM, heure + 1, PM);
+    else if(heure == 23)
+        printf("%i:00 %s -> %i:00 %s\n", heure - 12, PM, heure + 1 - 12, AM);
+    else if(heure < 12)
     {
-        dst[i] = src[i];
-        i++;       
+            printf("%i:00 %s -> %i:00 %s\n", heure, AM, heure + 1, AM);
+    }
+    else if(heure >= 12)
+    {
+        if(heure == 12)
+            printf("%i:00 %s -> %i:00 %s\n", heure, PM, heure + 1 - 12, PM);
+        else
+            printf("%i:00 %s -> %i:00 %s\n", heure - 12, PM, heure + 1 - 12, PM);
     }
 }
 
-struct s_stock_params       *ft_param_vers_tab(int ac, char *av[])
+int     main(void)
 {
-    struct s_stock_params    *tab;
-    
-    char    *strCpy;
-
-    tab = malloc(sizeof(struct s_stock_params) * (ac + 1));
-    for(int i = 0; i < ac + 1; i++)
-    {
-        //on alloue la copie de la string
-        strCpy = malloc(sizeof(char) * (ft_strlen(av[i]) + 1));
-        ft_strcpy(av[i], strCpy);
-        tab[i]._tailleParam = ft_strlen(av[i]);
-        tab[i]._str = av[i];
-        tab[i]._cpyStr = strCpy;
-    }
-    return(tab);
-}
-
-int     main(int ac, char *av[])
-{
-    struct s_stock_params    *tabStructParams;
-
-    tabStructParams = ft_param_vers_tab(ac, av);
-    //check affichage infos
-    printf("av:%s ", av[0]);
-    printf("av ref:%p\n", av[0]);
-    printf("-----------------\n");
-    printf("tailleParam:%i\n", tabStructParams[0]._tailleParam);
-    printf("-----------------\n");
-    printf("str:%s", tabStructParams[0]._str);
-    printf("str ref:%p\n", tabStructParams[0]._str);
-    printf("-----------------\n");
-    printf("cpyStr:%s ", tabStructParams[0]._cpyStr);
-    printf("cpyStr ref: %p\n", tabStructParams[0]._cpyStr);
-    if(av[0] == tabStructParams[0]._str)
-        printf("same");
-    else
-        printf("not same");
+    ft_aura_lieu(11);
     return(0);
 }
